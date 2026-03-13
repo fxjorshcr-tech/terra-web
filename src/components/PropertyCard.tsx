@@ -56,9 +56,6 @@ export default function PropertyCard({ propiedad }: { propiedad: Propiedad }) {
             {propiedad.amenidades.luz && (
               <span className="text-xs bg-yellow-50 text-yellow-600 px-2 py-0.5 rounded">Luz</span>
             )}
-            {propiedad.amenidades.internet && (
-              <span className="text-xs bg-purple-50 text-purple-600 px-2 py-0.5 rounded">Internet</span>
-            )}
             {propiedad.amenidades.escritura && (
               <span className="text-xs bg-green-50 text-green-600 px-2 py-0.5 rounded">Escritura</span>
             )}

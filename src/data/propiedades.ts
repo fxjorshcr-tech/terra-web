@@ -13,7 +13,6 @@ export interface Propiedad {
   amenidades: {
     agua: boolean;
     luz: boolean;
-    internet: boolean;
     calle: boolean;
     escritura: boolean;
   };
@@ -49,7 +48,7 @@ export const propiedades: Propiedad[] = [
     descripcion:
       "Hermosa casa en excelente ubicación, cerca de todos los servicios. Ideal para familias que buscan comodidad y acceso rápido al transporte público, comercios y centros educativos. Cuenta con cochera para dos vehículos, patio amplio con zona verde, cocina remodelada con muebles de madera y acabados de primera. La propiedad está en una zona residencial tranquila, con vigilancia las 24 horas. Perfecta para familias que quieren vivir cerca de todo sin perder la tranquilidad del hogar.",
     imagen: IMG,
-    amenidades: { agua: true, luz: true, internet: true, calle: true, escritura: true },
+    amenidades: { agua: true, luz: true, calle: true, escritura: true },
     financiamiento: true,
   },
   {
@@ -63,7 +62,7 @@ export const propiedades: Propiedad[] = [
     descripcion:
       "Lote plano listo para construir en zona residencial tranquila. Ubicado en una urbanización en crecimiento con excelente plusvalía. El terreno cuenta con acceso a todos los servicios básicos: agua potable, electricidad y conexión a internet. La calle de acceso está pavimentada y en buen estado. Ideal para construir su casa soñada o como inversión a futuro. Documentos al día, escritura lista para traspaso inmediato. No pierda esta oportunidad.",
     imagen: IMG,
-    amenidades: { agua: true, luz: true, internet: false, calle: true, escritura: true },
+    amenidades: { agua: true, luz: true, calle: true, escritura: true },
     financiamiento: false,
   },
   {
@@ -79,7 +78,7 @@ export const propiedades: Propiedad[] = [
     descripcion:
       "Amplia casa familiar con jardín, zona verde y excelente ventilación natural. Ubicada en uno de los barrios más seguros y agradables de Heredia. La casa cuenta con 4 habitaciones espaciosas, 2 baños completos, sala amplia con buena iluminación, comedor independiente y cocina equipada. El patio trasero es ideal para reuniones familiares o para que los niños jueguen con seguridad. Cerca de escuelas, colegios, supermercados y paradas de bus.",
     imagen: IMG,
-    amenidades: { agua: true, luz: true, internet: true, calle: true, escritura: true },
+    amenidades: { agua: true, luz: true, calle: true, escritura: true },
     financiamiento: true,
   },
   {
@@ -93,7 +92,7 @@ export const propiedades: Propiedad[] = [
     descripcion:
       "Terreno con vista al valle de Orosi, ideal para construir su casa soñada. Ubicado en zona de crecimiento con buena plusvalía y ambiente campestre. El lote tiene topografía favorable, con una leve pendiente que permite aprovechar las vistas al máximo. Acceso a agua y electricidad disponible. La zona es muy tranquila, rodeada de naturaleza pero con acceso a los servicios básicos en pocos minutos. Documentos completamente al día, escritura lista para traspaso.",
     imagen: IMG,
-    amenidades: { agua: true, luz: true, internet: false, calle: false, escritura: true },
+    amenidades: { agua: true, luz: true, calle: false, escritura: true },
     financiamiento: true,
   },
   {
@@ -109,7 +108,7 @@ export const propiedades: Propiedad[] = [
     descripcion:
       "Casa acogedora y bien mantenida, perfecta para familia pequeña. Ubicada en zona céntrica de Desamparados con fácil acceso a transporte público, supermercados, bancos y centros de salud. La propiedad cuenta con 3 habitaciones cómodas, 1 baño completo, sala-comedor integrado, cocina con espacio para lavandería y un pequeño patio. Ideal para quienes buscan una vivienda accesible en una ubicación estratégica. Se acepta financiamiento bancario.",
     imagen: IMG,
-    amenidades: { agua: true, luz: true, internet: true, calle: true, escritura: true },
+    amenidades: { agua: true, luz: true, calle: true, escritura: true },
     financiamiento: true,
   },
   {
@@ -123,7 +122,7 @@ export const propiedades: Propiedad[] = [
     descripcion:
       "Amplio lote en el mejor clima del mundo. Grecia es reconocida internacionalmente por su clima perfecto durante todo el año. Este terreno está ubicado en una zona residencial tranquila y segura, con acceso a todos los servicios básicos. Perfecto para construir su hogar o como inversión. La zona tiene excelente plusvalía y está en constante crecimiento. Escritura al día, lista para traspaso inmediato. No se necesita rellenar ni nivelar.",
     imagen: IMG,
-    amenidades: { agua: true, luz: true, internet: true, calle: true, escritura: true },
+    amenidades: { agua: true, luz: true, calle: true, escritura: true },
     financiamiento: false,
   },
   {
@@ -137,7 +136,7 @@ export const propiedades: Propiedad[] = [
     descripcion:
       "Hermosa finca en la zona de Nicoya con amplio terreno para ganadería o agricultura. La propiedad cuenta con árboles frutales, un riachuelo que cruza la finca y acceso por calle lastreada. Ideal para proyectos agropecuarios, turismo rural o simplemente para vivir en contacto con la naturaleza. La zona es conocida por su tranquilidad y belleza natural. Cuenta con agua de naciente propia y electricidad. Excelente oportunidad de inversión.",
     imagen: IMG,
-    amenidades: { agua: true, luz: true, internet: false, calle: false, escritura: true },
+    amenidades: { agua: true, luz: true, calle: false, escritura: true },
     financiamiento: true,
   },
   {
@@ -153,7 +152,7 @@ export const propiedades: Propiedad[] = [
     descripcion:
       "Casa moderna en Esparza con excelente ubicación cerca de la autopista. Ideal para familias que trabajan en el GAM pero prefieren vivir en un ambiente más tranquilo y con clima cálido. La propiedad cuenta con acabados modernos, pisos de cerámica, cielos de tablilla, ventanas con protección y portones eléctricos. Amplio patio con espacio para jardín y zona de lavandería techada. La urbanización cuenta con áreas verdes comunes y juegos infantiles.",
     imagen: IMG,
-    amenidades: { agua: true, luz: true, internet: true, calle: true, escritura: true },
+    amenidades: { agua: true, luz: true, calle: true, escritura: true },
     financiamiento: true,
   },
   {
@@ -167,7 +166,7 @@ export const propiedades: Propiedad[] = [
     descripcion:
       "Lote a precio accesible en Guápiles, zona en pleno desarrollo. El terreno es plano, ideal para construcción inmediata. Ubicado a pocos minutos del centro de Guápiles, con fácil acceso a comercios, servicios de salud y transporte público. Esta es una excelente opción para quienes buscan invertir con poco presupuesto en una zona con gran potencial de crecimiento. Agua y luz disponibles en el sitio. Escritura al día.",
     imagen: IMG,
-    amenidades: { agua: true, luz: true, internet: false, calle: true, escritura: true },
+    amenidades: { agua: true, luz: true, calle: true, escritura: true },
     financiamiento: false,
   },
 ];
