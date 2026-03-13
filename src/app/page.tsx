@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import PropertyCard from "@/components/PropertyCard";
 import { propiedades } from "@/data/propiedades";
@@ -8,22 +7,17 @@ export default function Home() {
     <>
       {/* Hero Section */}
       <section className="relative h-[80vh] min-h-[500px] flex items-center justify-center">
-        <Image
+        <img
           src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos/venta-de-propiedades.jpg"
           alt="Bienes Raíces Costa Rica"
-          fill
-          className="object-cover"
-          priority
+          className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/40" />
         <div className="relative z-10 text-center px-4">
-          <Image
+          <img
             src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos/gabriel-logo-trans.png"
             alt="Lotes y Casas CR"
-            width={400}
-            height={200}
             className="mx-auto h-40 md:h-56 w-auto drop-shadow-2xl brightness-0 invert"
-            priority
           />
           <p className="text-white text-lg md:text-2xl mt-6 font-light max-w-2xl mx-auto drop-shadow-lg">
             Encuentre su propiedad ideal en Costa Rica
@@ -86,12 +80,11 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
             <div className="flex justify-center">
-              <div className="relative w-72 h-80 rounded-2xl overflow-hidden shadow-lg">
-                <Image
+              <div className="w-72 h-80 rounded-2xl overflow-hidden shadow-lg">
+                <img
                   src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos/Gabriel%20Broker.jpeg"
                   alt="Gabriel Orozco - Asesor Inmobiliario"
-                  fill
-                  className="object-cover"
+                  className="w-full h-full object-cover"
                 />
               </div>
             </div>

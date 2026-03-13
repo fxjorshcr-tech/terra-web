@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useState } from "react";
 
 export default function Navbar() {
@@ -35,11 +34,9 @@ export default function Navbar() {
 
           {/* Logo small in navbar */}
           <Link href="/" className="absolute left-4 hidden md:block">
-            <Image
+            <img
               src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos/gabriel-logo-trans.png"
               alt="Lotes y Casas CR"
-              width={50}
-              height={50}
               className="h-12 w-auto"
             />
           </Link>

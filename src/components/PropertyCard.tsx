@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Propiedad } from "@/data/propiedades";
 
@@ -7,11 +6,10 @@ export default function PropertyCard({ propiedad }: { propiedad: Propiedad }) {
     <Link href={`/propiedades/${propiedad.id}`} className="group block">
       <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow border border-gray-100">
         <div className="relative h-52 overflow-hidden">
-          <Image
+          <img
             src={propiedad.imagen}
             alt={propiedad.titulo}
-            fill
-            className="object-cover group-hover:scale-105 transition-transform duration-300"
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
           />
           <span className="absolute top-3 left-3 bg-primary-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
             {propiedad.tipo}

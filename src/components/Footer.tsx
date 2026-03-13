@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -8,11 +7,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Logo & descripción */}
           <div>
-            <Image
+            <img
               src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos/gabriel-logo-trans.png"
               alt="Lotes y Casas CR"
-              width={160}
-              height={80}
               className="h-16 w-auto mb-4 brightness-0 invert"
             />
             <p className="text-gray-300 text-sm leading-relaxed">
@@ -76,7 +73,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-600 mt-8 pt-6 text-center text-gray-400 text-sm">
-          © {new Date().getFullYear()} Lotes y Casas CR. Todos los derechos reservados.
+          &copy; {new Date().getFullYear()} Lotes y Casas CR. Todos los derechos reservados.
         </div>
       </div>
     </footer>

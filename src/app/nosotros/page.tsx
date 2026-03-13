@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 export default function NosotrosPage() {
@@ -18,11 +17,9 @@ export default function NosotrosPage() {
       <section className="py-16 px-4">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
-            <Image
+            <img
               src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos/gabriel-logo-trans.png"
               alt="Lotes y Casas CR"
-              width={300}
-              height={150}
               className="h-28 w-auto mb-6"
             />
             <h2 className="text-2xl font-bold text-secondary-700">
@@ -41,12 +38,11 @@ export default function NosotrosPage() {
               legal y acompañarlo en todo el proceso de compra.
             </p>
           </div>
-          <div className="relative h-80 rounded-2xl overflow-hidden shadow-lg">
-            <Image
+          <div className="h-80 rounded-2xl overflow-hidden shadow-lg">
+            <img
               src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos/venta-de-propiedades.jpg"
               alt="Propiedades en Costa Rica"
-              fill
-              className="object-cover"
+              className="w-full h-full object-cover"
             />
           </div>
         </div>
@@ -57,12 +53,11 @@ export default function NosotrosPage() {
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
             <div className="flex justify-center">
-              <div className="relative w-72 h-80 rounded-2xl overflow-hidden shadow-lg">
-                <Image
+              <div className="w-72 h-80 rounded-2xl overflow-hidden shadow-lg">
+                <img
                   src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos/Gabriel%20Broker.jpeg"
                   alt="Gabriel Orozco"
-                  fill
-                  className="object-cover"
+                  className="w-full h-full object-cover"
                 />
               </div>
             </div>
