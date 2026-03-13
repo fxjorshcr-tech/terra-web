@@ -16,7 +16,7 @@ export default function Navbar() {
   return (
     <nav className="bg-white shadow-sm sticky top-0 z-50">
       <div className="max-w-5xl mx-auto px-4">
-        <div className="flex items-center justify-center h-20 relative">
+        <div className="flex items-center justify-center h-24 relative">
           {/* Mobile menu button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -37,7 +37,7 @@ export default function Navbar() {
             <img
               src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos/gabriel-logo-trans.png"
               alt="Lotes y Casas CR"
-              className="h-12 w-auto"
+              className="h-16 w-auto"
             />
           </Link>
 

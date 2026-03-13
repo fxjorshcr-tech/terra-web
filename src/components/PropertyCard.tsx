@@ -11,9 +11,16 @@ export default function PropertyCard({ propiedad }: { propiedad: Propiedad }) {
             alt={propiedad.titulo}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
           />
-          <span className="absolute top-3 left-3 bg-primary-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
-            {propiedad.tipo}
-          </span>
+          <div className="absolute top-3 left-3 flex gap-2">
+            <span className="bg-primary-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
+              {propiedad.tipo}
+            </span>
+            {propiedad.financiamiento && (
+              <span className="bg-accent-500 text-white text-xs font-semibold px-3 py-1 rounded-full">
+                Financiamiento
+              </span>
+            )}
+          </div>
         </div>
         <div className="p-4">
           <h3 className="font-bold text-lg text-secondary-700 group-hover:text-primary-600 transition-colors">
@@ -34,17 +41,29 @@ export default function PropertyCard({ propiedad }: { propiedad: Propiedad }) {
               {propiedad.area}
             </span>
             {propiedad.habitaciones && (
-              <span className="flex items-center gap-1">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                </svg>
-                {propiedad.habitaciones} hab
-              </span>
+              <span>{propiedad.habitaciones} hab</span>
             )}
             {propiedad.banos && (
               <span>{propiedad.banos} baño{propiedad.banos > 1 ? "s" : ""}</span>
             )}
           </div>
+
+          {/* Amenidades mini */}
+          <div className="flex flex-wrap gap-2 mt-3">
+            {propiedad.amenidades.agua && (
+              <span className="text-xs bg-blue-50 text-blue-600 px-2 py-0.5 rounded">Agua</span>
+            )}
+            {propiedad.amenidades.luz && (
+              <span className="text-xs bg-yellow-50 text-yellow-600 px-2 py-0.5 rounded">Luz</span>
+            )}
+            {propiedad.amenidades.internet && (
+              <span className="text-xs bg-purple-50 text-purple-600 px-2 py-0.5 rounded">Internet</span>
+            )}
+            {propiedad.amenidades.escritura && (
+              <span className="text-xs bg-green-50 text-green-600 px-2 py-0.5 rounded">Escritura</span>
+            )}
+          </div>
+
           <p className="mt-3 text-primary-700 font-bold text-xl">
             {propiedad.precio}
           </p>
