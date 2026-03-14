@@ -1,10 +1,33 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 
 export default function Footer() {
+  const [formData, setFormData] = useState({
+    nombre: "",
+    email: "",
+    mensaje: "",
+  });
+  const [enviado, setEnviado] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Build WhatsApp message with form data
+    const texto = `Hola, soy ${formData.nombre}. ${formData.mensaje} (Email: ${formData.email})`;
+    window.open(
+      `https://wa.me/50600000000?text=${encodeURIComponent(texto)}`,
+      "_blank"
+    );
+    setEnviado(true);
+    setFormData({ nombre: "", email: "", mensaje: "" });
+    setTimeout(() => setEnviado(false), 3000);
+  };
+
   return (
     <footer className="bg-secondary-700 text-white">
       <div className="max-w-6xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Logo & descripción */}
           <div>
             <img
@@ -69,6 +92,54 @@ export default function Footer() {
                 Costa Rica
               </li>
             </ul>
+          </div>
+
+          {/* Formulario de contacto */}
+          <div>
+            <h3 className="font-semibold text-lg mb-4">Escríbanos</h3>
+            <form onSubmit={handleSubmit} className="space-y-3">
+              <input
+                type="text"
+                placeholder="Nombre"
+                required
+                value={formData.nombre}
+                onChange={(e) =>
+                  setFormData({ ...formData, nombre: e.target.value })
+                }
+                className="w-full px-3 py-2 rounded-lg bg-secondary-600 border border-gray-500 text-white placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+              />
+              <input
+                type="email"
+                placeholder="Email"
+                required
+                value={formData.email}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
+                className="w-full px-3 py-2 rounded-lg bg-secondary-600 border border-gray-500 text-white placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+              />
+              <textarea
+                placeholder="Mensaje"
+                required
+                rows={3}
+                value={formData.mensaje}
+                onChange={(e) =>
+                  setFormData({ ...formData, mensaje: e.target.value })
+                }
+                className="w-full px-3 py-2 rounded-lg bg-secondary-600 border border-gray-500 text-white placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 resize-none"
+              />
+              <button
+                type="submit"
+                className="w-full bg-primary-600 hover:bg-primary-700 text-white py-2 rounded-lg font-semibold text-sm transition-colors"
+              >
+                Enviar
+              </button>
+              {enviado && (
+                <p className="text-green-400 text-xs text-center">
+                  Mensaje enviado correctamente
+                </p>
+              )}
+            </form>
           </div>
         </div>
 
