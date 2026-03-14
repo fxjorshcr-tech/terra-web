@@ -2,7 +2,8 @@ export interface Propiedad {
   id: number;
   titulo: string;
   provincia: string;
-  ubicacion: string;
+  canton: string;
+  lugarEspecifico: string;
   precio: string;
   tipo: "Casa" | "Lote" | "Finca" | "Otro";
   area: string;
@@ -19,16 +20,6 @@ export interface Propiedad {
   financiamiento: boolean;
 }
 
-export const provincias = [
-  "San José",
-  "Alajuela",
-  "Cartago",
-  "Heredia",
-  "Guanacaste",
-  "Puntarenas",
-  "Limón",
-];
-
 export const tipos: Propiedad["tipo"][] = ["Casa", "Lote", "Finca", "Otro"];
 
 const IMG =
@@ -39,7 +30,8 @@ export const propiedades: Propiedad[] = [
     id: 1,
     titulo: "Casa en San José Centro",
     provincia: "San José",
-    ubicacion: "San José Centro, San José",
+    canton: "San José",
+    lugarEspecifico: "Barrio Amón",
     precio: "₡45,000,000",
     tipo: "Casa",
     area: "120 m²",
@@ -55,7 +47,8 @@ export const propiedades: Propiedad[] = [
     id: 2,
     titulo: "Lote en San Ramón",
     provincia: "Alajuela",
-    ubicacion: "San Ramón, Alajuela",
+    canton: "San Ramón",
+    lugarEspecifico: "Urbanización Los Ángeles",
     precio: "₡18,500,000",
     tipo: "Lote",
     area: "300 m²",
@@ -69,7 +62,8 @@ export const propiedades: Propiedad[] = [
     id: 3,
     titulo: "Casa en Santo Domingo",
     provincia: "Heredia",
-    ubicacion: "Santo Domingo, Heredia",
+    canton: "Santo Domingo",
+    lugarEspecifico: "San Vicente",
     precio: "₡52,000,000",
     tipo: "Casa",
     area: "150 m²",
@@ -85,7 +79,8 @@ export const propiedades: Propiedad[] = [
     id: 4,
     titulo: "Lote en Paraíso",
     provincia: "Cartago",
-    ubicacion: "Paraíso, Cartago",
+    canton: "Paraíso",
+    lugarEspecifico: "Valle de Orosi",
     precio: "₡12,000,000",
     tipo: "Lote",
     area: "250 m²",
@@ -99,7 +94,8 @@ export const propiedades: Propiedad[] = [
     id: 5,
     titulo: "Casa en Desamparados",
     provincia: "San José",
-    ubicacion: "Desamparados, San José",
+    canton: "Desamparados",
+    lugarEspecifico: "San Rafael Abajo",
     precio: "₡38,000,000",
     tipo: "Casa",
     area: "100 m²",
@@ -115,7 +111,8 @@ export const propiedades: Propiedad[] = [
     id: 6,
     titulo: "Lote en Grecia",
     provincia: "Alajuela",
-    ubicacion: "Grecia, Alajuela",
+    canton: "Grecia",
+    lugarEspecifico: "Barrio San Roque",
     precio: "₡15,000,000",
     tipo: "Lote",
     area: "400 m²",
@@ -129,7 +126,8 @@ export const propiedades: Propiedad[] = [
     id: 7,
     titulo: "Finca en Nicoya",
     provincia: "Guanacaste",
-    ubicacion: "Nicoya, Guanacaste",
+    canton: "Nicoya",
+    lugarEspecifico: "Quebrada Honda",
     precio: "₡35,000,000",
     tipo: "Finca",
     area: "5,000 m²",
@@ -143,7 +141,8 @@ export const propiedades: Propiedad[] = [
     id: 8,
     titulo: "Casa en Esparza",
     provincia: "Puntarenas",
-    ubicacion: "Esparza, Puntarenas",
+    canton: "Esparza",
+    lugarEspecifico: "Residencial Monte Verde",
     precio: "₡42,000,000",
     tipo: "Casa",
     area: "130 m²",
@@ -159,7 +158,8 @@ export const propiedades: Propiedad[] = [
     id: 9,
     titulo: "Lote en Guápiles",
     provincia: "Limón",
-    ubicacion: "Guápiles, Limón",
+    canton: "Pococí",
+    lugarEspecifico: "Guápiles Centro",
     precio: "₡9,500,000",
     tipo: "Lote",
     area: "350 m²",
