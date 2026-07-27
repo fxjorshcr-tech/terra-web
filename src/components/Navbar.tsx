@@ -19,7 +19,7 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex-shrink-0" aria-label="Oroz Real State - Inicio">
+          <Link href="/" className="flex-shrink-0" aria-label="Oroz Real Estate - Inicio">
             <Logo size="sm" />
           </Link>
 

@@ -15,7 +15,7 @@ export default function NosotrosPage() {
         </h1>
         <div className="w-14 h-0.5 bg-accent-500 mx-auto mt-5" />
         <p className="text-gray-300 mt-5 max-w-xl mx-auto font-light">
-          Conozca más sobre Oroz Real State y nuestro compromiso con usted
+          Conozca más sobre Oroz Real Estate y nuestro compromiso con usted
         </p>
       </section>
 
@@ -30,7 +30,7 @@ export default function NosotrosPage() {
               Bienes Raíces de Confianza
             </h2>
             <p className="text-gray-600 mt-4 leading-relaxed">
-              <strong>Oroz Real State</strong> nació con la misión de facilitar
+              <strong>Oroz Real Estate</strong> nació con la misión de facilitar
               el acceso a propiedades de calidad para las familias
               costarricenses. Sabemos lo importante que es encontrar el lugar
               perfecto para su hogar o su próxima inversión.
@@ -85,7 +85,7 @@ export default function NosotrosPage() {
                 Oroz como un referente de confianza en el mercado.
               </p>
               <p className="text-gray-600 leading-relaxed mt-4">
-                Como director de <strong>Oroz Real State</strong>, aporta su
+                Como director de <strong>Oroz Real Estate</strong>, aporta su
                 visión estratégica y su conocimiento del mercado inmobiliario
                 para ofrecer a cada cliente un servicio personalizado,
                 transparente y orientado a resultados.

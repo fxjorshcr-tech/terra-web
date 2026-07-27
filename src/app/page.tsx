@@ -102,7 +102,7 @@ export default function Home() {
             <div>
               <p className="text-gray-600 leading-relaxed">
                 El Licenciado Gabriel Orozco, empresario y abogado, es el
-                director de <strong>Oroz Real State</strong>. Con amplia
+                director de <strong>Oroz Real Estate</strong>. Con amplia
                 experiencia en el mercado inmobiliario costarricense, Gabriel se
                 dedica a ayudar a familias a encontrar su hogar ideal.
               </p>
