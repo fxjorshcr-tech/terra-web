@@ -3,7 +3,7 @@ import PropertyCard from "@/components/PropertyCard";
 import { propiedades } from "@/data/propiedades";
 import { marca, whatsappUrl } from "@/data/contacto";
 import { WhatsAppIcon } from "@/components/SocialIcons";
-import Logo from "@/components/Logo";
+import ReviewBadges from "@/components/ReviewBadges";
 
 export default function Home() {
   return (
@@ -15,29 +15,22 @@ export default function Home() {
           alt="Bienes Raíces Costa Rica"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-secondary-800/70 via-secondary-800/55 to-secondary-800/80" />
-        <div className="relative z-10 text-center px-4 max-w-3xl mx-auto drop-shadow-2xl">
-          <Logo light size="lg" />
-          <p className="text-accent-500 uppercase tracking-[0.3em] text-xs md:text-sm mt-8 font-medium">
-            Bienes Raíces en Costa Rica
-          </p>
-          <h1 className="text-white text-3xl md:text-5xl mt-3 font-medium drop-shadow-lg">
+        <div className="absolute inset-0 bg-gradient-to-b from-secondary-800/80 via-secondary-800/60 to-secondary-800/90" />
+        <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
+          <h1 className="text-white text-4xl md:text-6xl font-semibold drop-shadow-lg leading-tight">
             Encuentre su propiedad ideal
           </h1>
-          <p className="text-gray-200 text-base md:text-lg mt-4 font-light max-w-xl mx-auto">
-            Lotes, casas y fincas con documentación verificada y el respaldo
-            profesional del Lic. Gabriel Orozco.
-          </p>
-          <div className="mt-9 flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="w-16 h-0.5 bg-accent-500 mx-auto mt-7" />
+          <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/propiedades"
-              className="bg-primary-700 hover:bg-primary-800 text-white px-8 py-3.5 rounded-lg font-semibold transition-colors"
+              className="bg-accent-500 hover:bg-accent-600 text-white px-9 py-3.5 rounded-lg font-semibold transition-colors"
             >
               Ver Propiedades
             </Link>
             <Link
               href="/contacto"
-              className="bg-white/95 hover:bg-white text-secondary-700 px-8 py-3.5 rounded-lg font-semibold transition-colors"
+              className="border border-white/80 text-white hover:bg-white hover:text-secondary-800 px-9 py-3.5 rounded-lg font-semibold transition-colors"
             >
               Contáctenos
             </Link>
@@ -132,23 +125,25 @@ export default function Home() {
                 Hablar con Gabriel
               </Link>
 
+              <ReviewBadges />
+
               {/* Grupo Oroz */}
               <a
                 href={marca.grupoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-10 flex items-center gap-4 group"
+                className="mt-10 flex items-center gap-5 group"
               >
                 <img
                   src={marca.grupoLogo}
                   alt="Grupo Oroz"
-                  className="h-16 w-16 rounded-lg object-contain bg-white shadow-sm border border-gray-200"
+                  className="h-28 w-28 md:h-32 md:w-32 rounded-xl object-contain bg-white shadow-md border border-gray-200"
                 />
                 <span>
-                  <span className="block text-[0.65rem] uppercase tracking-[0.25em] text-gray-400">
+                  <span className="block text-xs uppercase tracking-[0.25em] text-gray-400">
                     Una empresa de
                   </span>
-                  <span className="block text-secondary-700 font-semibold group-hover:text-primary-700 transition-colors">
+                  <span className="block text-secondary-700 font-semibold text-2xl md:text-3xl group-hover:text-primary-700 transition-colors font-display">
                     {marca.grupo}
                   </span>
                 </span>
