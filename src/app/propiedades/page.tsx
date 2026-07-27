@@ -6,7 +6,7 @@ export default function PropiedadesPage() {
   return (
     <>
       {/* Header */}
-      <section className="relative py-24 md:py-28 px-4 text-center overflow-hidden">
+      <section className="relative pt-44 pb-24 md:pt-56 md:pb-28 px-4 text-center overflow-hidden">
         <img
           src={marca.heroImagen}
           alt="Propiedades en Costa Rica"

@@ -7,7 +7,7 @@ export default function NosotrosPage() {
   return (
     <>
       {/* Header */}
-      <section className="bg-secondary-700 py-20 px-4 text-center">
+      <section className="bg-secondary-700 pt-40 md:pt-52 pb-20 px-4 text-center">
         <p className="text-accent-500 font-semibold text-xs uppercase tracking-[0.25em]">
           Nuestra Historia
         </p>
