@@ -1,8 +1,9 @@
 import Link from "next/link";
 import PropertyCard from "@/components/PropertyCard";
 import { propiedades } from "@/data/propiedades";
-import { whatsappUrl } from "@/data/contacto";
+import { marca, whatsappUrl } from "@/data/contacto";
 import { WhatsAppIcon } from "@/components/SocialIcons";
+import Logo from "@/components/Logo";
 
 export default function Home() {
   return (
@@ -10,17 +11,13 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative h-[80vh] min-h-[520px] flex items-center justify-center">
         <img
-          src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos/venta-de-propiedades.jpg"
+          src={marca.heroImagen}
           alt="Bienes Raíces Costa Rica"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-secondary-800/70 via-secondary-800/50 to-secondary-800/80" />
-        <div className="relative z-10 text-center px-4 max-w-3xl mx-auto">
-          <img
-            src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos/gabriel-logo-trans.png"
-            alt="Lotes y Casas CR"
-            className="mx-auto h-36 md:h-48 w-auto drop-shadow-2xl brightness-0 invert"
-          />
+        <div className="absolute inset-0 bg-gradient-to-b from-secondary-800/70 via-secondary-800/40 to-secondary-800/80" />
+        <div className="relative z-10 text-center px-4 max-w-3xl mx-auto drop-shadow-2xl">
+          <Logo light size="lg" />
           <p className="text-accent-500 uppercase tracking-[0.3em] text-xs md:text-sm mt-8 font-medium">
             Bienes Raíces en Costa Rica
           </p>
@@ -105,7 +102,7 @@ export default function Home() {
             <div>
               <p className="text-gray-600 leading-relaxed">
                 El Licenciado Gabriel Orozco, empresario y abogado, es el
-                director de <strong>Lotes y Casas CR</strong>. Con amplia
+                director de <strong>Oroz Real State</strong>. Con amplia
                 experiencia en el mercado inmobiliario costarricense, Gabriel se
                 dedica a ayudar a familias a encontrar su hogar ideal.
               </p>
@@ -134,6 +131,28 @@ export default function Home() {
               >
                 Hablar con Gabriel
               </Link>
+
+              {/* Grupo Oroz */}
+              <a
+                href={marca.grupoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-10 flex items-center gap-4 group"
+              >
+                <img
+                  src={marca.grupoLogo}
+                  alt="Grupo Oroz"
+                  className="h-16 w-16 rounded-lg object-contain bg-white shadow-sm border border-gray-200"
+                />
+                <span>
+                  <span className="block text-[0.65rem] uppercase tracking-[0.25em] text-gray-400">
+                    Una empresa de
+                  </span>
+                  <span className="block text-secondary-700 font-semibold group-hover:text-primary-700 transition-colors">
+                    {marca.grupo}
+                  </span>
+                </span>
+              </a>
             </div>
           </div>
         </div>

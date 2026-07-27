@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { marca } from "@/data/contacto";
+import Logo from "@/components/Logo";
 
 export default function NosotrosPage() {
   return (
@@ -13,7 +15,7 @@ export default function NosotrosPage() {
         </h1>
         <div className="w-14 h-0.5 bg-accent-500 mx-auto mt-5" />
         <p className="text-gray-300 mt-5 max-w-xl mx-auto font-light">
-          Conozca más sobre Lotes y Casas CR y nuestro compromiso con usted
+          Conozca más sobre Oroz Real State y nuestro compromiso con usted
         </p>
       </section>
 
@@ -21,16 +23,14 @@ export default function NosotrosPage() {
       <section className="py-16 px-4">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
-            <img
-              src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos/gabriel-logo-trans.png"
-              alt="Lotes y Casas CR"
-              className="h-28 w-auto mb-6"
-            />
+            <div className="mb-6">
+              <Logo size="md" />
+            </div>
             <h2 className="text-2xl font-bold text-secondary-700">
               Bienes Raíces de Confianza
             </h2>
             <p className="text-gray-600 mt-4 leading-relaxed">
-              <strong>Lotes y Casas CR</strong> nació con la misión de facilitar
+              <strong>Oroz Real State</strong> nació con la misión de facilitar
               el acceso a propiedades de calidad para las familias
               costarricenses. Sabemos lo importante que es encontrar el lugar
               perfecto para su hogar o su próxima inversión.
@@ -85,7 +85,7 @@ export default function NosotrosPage() {
                 Oroz como un referente de confianza en el mercado.
               </p>
               <p className="text-gray-600 leading-relaxed mt-4">
-                Como director de <strong>Lotes y Casas CR</strong>, aporta su
+                Como director de <strong>Oroz Real State</strong>, aporta su
                 visión estratégica y su conocimiento del mercado inmobiliario
                 para ofrecer a cada cliente un servicio personalizado,
                 transparente y orientado a resultados.
@@ -110,6 +110,28 @@ export default function NosotrosPage() {
                   </p>
                 </div>
               </div>
+
+              {/* Grupo Oroz */}
+              <a
+                href={marca.grupoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-8 flex items-center gap-4 group"
+              >
+                <img
+                  src={marca.grupoLogo}
+                  alt="Grupo Oroz"
+                  className="h-16 w-16 rounded-lg object-contain bg-white shadow-sm border border-gray-200"
+                />
+                <span>
+                  <span className="block text-[0.65rem] uppercase tracking-[0.25em] text-gray-400">
+                    Una empresa de
+                  </span>
+                  <span className="block text-secondary-700 font-semibold group-hover:text-primary-700 transition-colors">
+                    {marca.grupo}
+                  </span>
+                </span>
+              </a>
             </div>
           </div>
         </div>
