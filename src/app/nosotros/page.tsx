@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { marca } from "@/data/contacto";
 import Logo from "@/components/Logo";
+import ReviewBadges from "@/components/ReviewBadges";
 
 export default function NosotrosPage() {
   return (
@@ -111,23 +112,25 @@ export default function NosotrosPage() {
                 </div>
               </div>
 
+              <ReviewBadges />
+
               {/* Grupo Oroz */}
               <a
                 href={marca.grupoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-8 flex items-center gap-4 group"
+                className="mt-8 flex items-center gap-5 group"
               >
                 <img
                   src={marca.grupoLogo}
                   alt="Grupo Oroz"
-                  className="h-16 w-16 rounded-lg object-contain bg-white shadow-sm border border-gray-200"
+                  className="h-28 w-28 md:h-32 md:w-32 rounded-xl object-contain bg-white shadow-md border border-gray-200"
                 />
                 <span>
-                  <span className="block text-[0.65rem] uppercase tracking-[0.25em] text-gray-400">
+                  <span className="block text-xs uppercase tracking-[0.25em] text-gray-400">
                     Una empresa de
                   </span>
-                  <span className="block text-secondary-700 font-semibold group-hover:text-primary-700 transition-colors">
+                  <span className="block text-secondary-700 font-semibold text-2xl md:text-3xl group-hover:text-primary-700 transition-colors font-display">
                     {marca.grupo}
                   </span>
                 </span>

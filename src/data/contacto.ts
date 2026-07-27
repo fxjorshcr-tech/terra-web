@@ -23,6 +23,15 @@ export const marca = {
     "https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Ruta%20Pacifico/blog-ruta-pacifico-guanacaste2.webp",
 };
 
+// Insignias de reseñas (Google Business Profile / Trustpilot).
+// Se muestran automáticamente cuando se completan con los datos REALES del
+// perfil: url del perfil público y calificación actual. Dejarlas vacías
+// mientras los perfiles no existan.
+export const resenas = {
+  google: { url: "", rating: "" }, // ej: { url: "https://g.page/...", rating: "5.0" }
+  trustpilot: { url: "", rating: "" }, // ej: { url: "https://www.trustpilot.com/review/orozrealstate.com", rating: "4.8" }
+};
+
 export function whatsappUrl(texto?: string) {
   const base = `https://wa.me/${contacto.whatsappNumero}`;
   return texto ? `${base}?text=${encodeURIComponent(texto)}` : base;
