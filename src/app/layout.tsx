@@ -1,12 +1,26 @@
 import type { Metadata } from "next";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Lotes y Casas CR - Bienes Raíces Costa Rica",
   description:
-    "Encuentra tu propiedad ideal en Costa Rica. Lotes, casas y más con el respaldo de Gabriel Orozco.",
+    "Encuentre su propiedad ideal en Costa Rica. Lotes, casas y más con el respaldo del Lic. Gabriel Orozco.",
 };
 
 export default function RootLayout({
@@ -15,11 +29,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es">
-      <body className="bg-white text-gray-800">
+    <html lang="es" className={`${inter.variable} ${playfair.variable}`}>
+      <body className="bg-white text-gray-800 font-sans antialiased">
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <WhatsAppButton />
       </body>
     </html>
   );

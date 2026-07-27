@@ -1,12 +1,44 @@
+"use client";
+
+import { useState } from "react";
+import { contacto, whatsappUrl } from "@/data/contacto";
+import { FacebookIcon, InstagramIcon, WhatsAppIcon } from "@/components/SocialIcons";
+
+const intereses: Record<string, string> = {
+  casa: "Comprar una casa",
+  lote: "Comprar un lote",
+  vender: "Quiero vender mi propiedad",
+  info: "Información general",
+};
+
 export default function ContactoPage() {
+  const [formData, setFormData] = useState({
+    nombre: "",
+    telefono: "",
+    email: "",
+    interes: "",
+    mensaje: "",
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const interesTexto = intereses[formData.interes]
+      ? ` Me interesa: ${intereses[formData.interes]}.`
+      : "";
+    const texto = `Hola, soy ${formData.nombre}.${interesTexto} ${formData.mensaje} (Tel: ${formData.telefono}, Email: ${formData.email})`;
+    window.open(whatsappUrl(texto), "_blank");
+  };
+
   return (
     <>
       {/* Header */}
-      <section className="bg-secondary-700 py-16 px-4 text-center">
-        <h1 className="text-3xl md:text-4xl font-bold text-white">
-          Contáctenos
-        </h1>
-        <p className="text-gray-300 mt-3 max-w-xl mx-auto">
+      <section className="bg-secondary-700 py-20 px-4 text-center">
+        <p className="text-accent-500 font-semibold text-xs uppercase tracking-[0.25em]">
+          Estamos para servirle
+        </p>
+        <h1 className="text-3xl md:text-4xl text-white mt-3">Contáctenos</h1>
+        <div className="w-14 h-0.5 bg-accent-500 mx-auto mt-5" />
+        <p className="text-gray-300 mt-5 max-w-xl mx-auto font-light">
           Estamos listos para ayudarle a encontrar su propiedad ideal
         </p>
       </section>
@@ -15,10 +47,10 @@ export default function ContactoPage() {
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Form */}
           <div>
-            <h2 className="text-2xl font-bold text-secondary-700 mb-6">
+            <h2 className="text-2xl text-secondary-700 mb-6">
               Envíenos un mensaje
             </h2>
-            <form className="space-y-5">
+            <form className="space-y-5" onSubmit={handleSubmit}>
               <div>
                 <label
                   htmlFor="nombre"
@@ -30,6 +62,11 @@ export default function ContactoPage() {
                   type="text"
                   id="nombre"
                   name="nombre"
+                  required
+                  value={formData.nombre}
+                  onChange={(e) =>
+                    setFormData({ ...formData, nombre: e.target.value })
+                  }
                   className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                   placeholder="Su nombre"
                 />
@@ -45,6 +82,10 @@ export default function ContactoPage() {
                   type="tel"
                   id="telefono"
                   name="telefono"
+                  value={formData.telefono}
+                  onChange={(e) =>
+                    setFormData({ ...formData, telefono: e.target.value })
+                  }
                   className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                   placeholder="+506 0000-0000"
                 />
@@ -60,6 +101,10 @@ export default function ContactoPage() {
                   type="email"
                   id="email"
                   name="email"
+                  value={formData.email}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
                   className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                   placeholder="su@correo.com"
                 />
@@ -74,6 +119,10 @@ export default function ContactoPage() {
                 <select
                   id="interes"
                   name="interes"
+                  value={formData.interes}
+                  onChange={(e) =>
+                    setFormData({ ...formData, interes: e.target.value })
+                  }
                   className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                 >
                   <option value="">Seleccione una opción</option>
@@ -94,27 +143,36 @@ export default function ContactoPage() {
                   id="mensaje"
                   name="mensaje"
                   rows={4}
+                  required
+                  value={formData.mensaje}
+                  onChange={(e) =>
+                    setFormData({ ...formData, mensaje: e.target.value })
+                  }
                   className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
                   placeholder="Cuéntenos qué busca..."
                 />
               </div>
               <button
                 type="submit"
-                className="w-full bg-primary-600 hover:bg-primary-700 text-white py-3 rounded-lg font-semibold text-lg transition-colors"
+                className="w-full bg-primary-700 hover:bg-primary-800 text-white py-3 rounded-lg font-semibold text-lg transition-colors"
               >
                 Enviar Mensaje
               </button>
+              <p className="text-gray-400 text-xs text-center">
+                Al enviar, se abrirá WhatsApp con su mensaje listo para
+                enviarnos.
+              </p>
             </form>
           </div>
 
           {/* Contact info */}
           <div>
-            <h2 className="text-2xl font-bold text-secondary-700 mb-6">
+            <h2 className="text-2xl text-secondary-700 mb-6">
               Información de Contacto
             </h2>
 
             {/* Gabriel card */}
-            <div className="bg-gray-50 rounded-xl p-6 mb-6">
+            <div className="bg-gray-50 rounded-xl p-6 mb-6 border border-gray-100">
               <div className="flex items-center gap-4">
                 <div className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
                   <img
@@ -124,12 +182,10 @@ export default function ContactoPage() {
                   />
                 </div>
                 <div>
-                  <h3 className="font-bold text-secondary-700">
-                    Lic. Gabriel Orozco
+                  <h3 className="font-bold text-secondary-700 font-sans">
+                    {contacto.nombre}
                   </h3>
-                  <p className="text-gray-500 text-sm">
-                    Asesor Inmobiliario / Abogado
-                  </p>
+                  <p className="text-gray-500 text-sm">{contacto.cargo}</p>
                 </div>
               </div>
             </div>
@@ -142,26 +198,33 @@ export default function ContactoPage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-secondary-700">Teléfono</h3>
-                  <p className="text-gray-500">+506 0000-0000</p>
+                  <h3 className="font-semibold text-secondary-700 font-sans">
+                    Teléfono
+                  </h3>
+                  <a
+                    href={contacto.telefonoHref}
+                    className="text-gray-500 hover:text-primary-600 transition-colors"
+                  >
+                    {contacto.telefonoDisplay}
+                  </a>
                 </div>
               </div>
 
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                  <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                  </svg>
+                  <WhatsAppIcon className="w-5 h-5 text-green-600" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-secondary-700">WhatsApp</h3>
+                  <h3 className="font-semibold text-secondary-700 font-sans">
+                    WhatsApp
+                  </h3>
                   <a
-                    href="https://wa.me/50600000000"
+                    href={whatsappUrl()}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-green-600 hover:underline"
                   >
-                    Escribir por WhatsApp
+                    {contacto.telefonoDisplay}
                   </a>
                 </div>
               </div>
@@ -173,10 +236,15 @@ export default function ContactoPage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-secondary-700">
+                  <h3 className="font-semibold text-secondary-700 font-sans">
                     Correo Electrónico
                   </h3>
-                  <p className="text-gray-500">info@lotesycasascr.com</p>
+                  <a
+                    href={`mailto:${contacto.email}`}
+                    className="text-gray-500 hover:text-primary-600 transition-colors break-all"
+                  >
+                    {contacto.email}
+                  </a>
                 </div>
               </div>
 
@@ -188,28 +256,39 @@ export default function ContactoPage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-secondary-700">
+                  <h3 className="font-semibold text-secondary-700 font-sans">
                     Ubicación
                   </h3>
-                  <p className="text-gray-500">Costa Rica</p>
+                  <p className="text-gray-500">{contacto.ubicacion}</p>
                 </div>
               </div>
             </div>
 
-            {/* Facebook CTA */}
-            <div className="mt-8 p-6 bg-blue-50 rounded-xl text-center">
-              <p className="text-gray-600 text-sm mb-3">
-                También puede encontrarnos en Facebook
+            {/* Redes sociales */}
+            <div className="mt-8 p-6 bg-gray-50 border border-gray-100 rounded-xl text-center">
+              <p className="text-gray-600 text-sm mb-4">
+                Síganos en nuestras redes sociales
               </p>
-              <a
-                href="#"
-                className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors"
-              >
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                </svg>
-                Síguenos en Facebook
-              </a>
+              <div className="flex justify-center gap-3">
+                <a
+                  href={contacto.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-[#1877F2] hover:bg-[#145fc4] text-white px-5 py-2.5 rounded-lg font-semibold text-sm transition-colors"
+                >
+                  <FacebookIcon className="w-5 h-5" />
+                  Facebook
+                </a>
+                <a
+                  href={contacto.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-[#f09433] via-[#dc2743] to-[#bc1888] hover:opacity-90 text-white px-5 py-2.5 rounded-lg font-semibold text-sm transition-opacity"
+                >
+                  <InstagramIcon className="w-5 h-5" />
+                  Instagram
+                </a>
+              </div>
             </div>
           </div>
         </div>

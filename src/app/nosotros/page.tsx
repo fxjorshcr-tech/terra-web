@@ -4,11 +4,15 @@ export default function NosotrosPage() {
   return (
     <>
       {/* Header */}
-      <section className="bg-secondary-700 py-16 px-4 text-center">
-        <h1 className="text-3xl md:text-4xl font-bold text-white">
+      <section className="bg-secondary-700 py-20 px-4 text-center">
+        <p className="text-accent-500 font-semibold text-xs uppercase tracking-[0.25em]">
+          Nuestra Historia
+        </p>
+        <h1 className="text-3xl md:text-4xl text-white mt-3">
           Sobre Nosotros
         </h1>
-        <p className="text-gray-300 mt-3 max-w-xl mx-auto">
+        <div className="w-14 h-0.5 bg-accent-500 mx-auto mt-5" />
+        <p className="text-gray-300 mt-5 max-w-xl mx-auto font-light">
           Conozca más sobre Lotes y Casas CR y nuestro compromiso con usted
         </p>
       </section>
