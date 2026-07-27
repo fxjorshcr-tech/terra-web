@@ -15,9 +15,9 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="bg-white/95 backdrop-blur border-b border-gray-100 sticky top-0 z-50">
+    <nav className="bg-secondary-800/95 backdrop-blur border-b border-white/10 sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-24">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0" aria-label="Oroz Real Estate - Inicio">
             <Logo size="sm" />
@@ -29,7 +29,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-secondary-600 hover:text-primary-600 font-medium transition-colors text-sm uppercase tracking-widest"
+                className="text-gray-200 hover:text-accent-500 font-medium transition-colors text-sm uppercase tracking-widest"
               >
                 {link.label}
               </Link>
@@ -39,7 +39,7 @@ export default function Navbar() {
           {/* CTA button */}
           <Link
             href="/contacto"
-            className="hidden md:block bg-primary-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-primary-800 transition-colors"
+            className="hidden md:block bg-accent-500 hover:bg-accent-600 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors"
           >
             Contáctenos
           </Link>
@@ -47,7 +47,7 @@ export default function Navbar() {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-secondary-600"
+            className="md:hidden text-white"
             aria-label="Abrir menú"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -62,13 +62,13 @@ export default function Navbar() {
 
         {/* Mobile menu */}
         {isOpen && (
-          <div className="md:hidden pb-4 border-t border-gray-100">
+          <div className="md:hidden pb-4 border-t border-white/10">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="block py-3 px-2 text-secondary-600 hover:text-primary-600 font-medium text-sm uppercase tracking-widest"
+                className="block py-3 px-2 text-gray-200 hover:text-accent-500 font-medium text-sm uppercase tracking-widest"
               >
                 {link.label}
               </Link>
@@ -76,7 +76,7 @@ export default function Navbar() {
             <Link
               href="/contacto"
               onClick={() => setIsOpen(false)}
-              className="block mt-2 text-center bg-primary-700 text-white px-4 py-2.5 rounded-lg text-sm font-medium"
+              className="block mt-2 text-center bg-accent-500 text-white px-4 py-2.5 rounded-lg text-sm font-medium"
             >
               Contáctenos
             </Link>
