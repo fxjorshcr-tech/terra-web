@@ -79,13 +79,13 @@ export default function PropiedadDetalle({
   return (
     <>
       {/* Breadcrumb */}
-      <div className="bg-gray-50 py-4 px-4">
-        <div className="max-w-5xl mx-auto flex items-center gap-2 text-sm text-gray-500">
-          <Link href="/" className="hover:text-primary-600">Inicio</Link>
+      <div className="bg-secondary-800 pt-32 md:pt-44 pb-5 px-4">
+        <div className="max-w-5xl mx-auto flex items-center gap-2 text-sm text-gray-400">
+          <Link href="/" className="hover:text-accent-500 transition-colors">Inicio</Link>
           <span>/</span>
-          <Link href="/propiedades" className="hover:text-primary-600">Propiedades</Link>
+          <Link href="/propiedades" className="hover:text-accent-500 transition-colors">Propiedades</Link>
           <span>/</span>
-          <span className="text-gray-800">{propiedad.titulo}</span>
+          <span className="text-white">{propiedad.titulo}</span>
         </div>
       </div>
 
