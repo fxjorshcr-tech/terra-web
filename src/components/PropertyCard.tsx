@@ -1,30 +1,39 @@
 import Link from "next/link";
 import { Propiedad } from "@/data/propiedades";
+import { Dict, Locale, tituloPropiedad } from "@/i18n/dictionaries";
 
-export default function PropertyCard({ propiedad }: { propiedad: Propiedad }) {
+export default function PropertyCard({
+  propiedad,
+  lang,
+  dict,
+}: {
+  propiedad: Propiedad;
+  lang: Locale;
+  dict: Dict;
+}) {
   return (
-    <Link href={`/propiedades/${propiedad.id}`} className="group block">
+    <Link href={`/${lang}/propiedades/${propiedad.id}`} className="group block">
       <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow border border-gray-200">
         <div className="relative h-52 overflow-hidden">
           <img
             src={propiedad.imagen}
-            alt={propiedad.titulo}
+            alt={tituloPropiedad(propiedad, lang, dict)}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
           />
           <div className="absolute top-3 left-3 flex gap-2">
             <span className="bg-primary-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
-              {propiedad.tipo}
+              {dict.tipos[propiedad.tipo]}
             </span>
             {propiedad.financiamiento && (
               <span className="bg-accent-500 text-white text-xs font-semibold px-3 py-1 rounded-full">
-                Financiamiento
+                {dict.card.financiamiento}
               </span>
             )}
           </div>
         </div>
         <div className="p-4">
           <h3 className="font-bold text-lg text-secondary-700 group-hover:text-primary-600 transition-colors font-sans">
-            {propiedad.titulo}
+            {tituloPropiedad(propiedad, lang, dict)}
           </h3>
           <p className="text-gray-500 text-sm mt-1 flex items-center gap-1">
             <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -41,23 +50,34 @@ export default function PropertyCard({ propiedad }: { propiedad: Propiedad }) {
               {propiedad.area}
             </span>
             {propiedad.habitaciones && (
-              <span>{propiedad.habitaciones} hab</span>
+              <span>
+                {propiedad.habitaciones} {dict.card.hab}
+              </span>
             )}
             {propiedad.banos && (
-              <span>{propiedad.banos} baño{propiedad.banos > 1 ? "s" : ""}</span>
+              <span>
+                {propiedad.banos}{" "}
+                {propiedad.banos > 1 ? dict.card.banos : dict.card.bano}
+              </span>
             )}
           </div>
 
           {/* Amenidades mini */}
           <div className="flex flex-wrap gap-2 mt-3">
             {propiedad.amenidades.agua && (
-              <span className="text-xs bg-blue-50 text-blue-600 px-2 py-0.5 rounded">Agua</span>
+              <span className="text-xs bg-blue-50 text-blue-600 px-2 py-0.5 rounded">
+                {dict.card.agua}
+              </span>
             )}
             {propiedad.amenidades.luz && (
-              <span className="text-xs bg-yellow-50 text-yellow-600 px-2 py-0.5 rounded">Luz</span>
+              <span className="text-xs bg-yellow-50 text-yellow-600 px-2 py-0.5 rounded">
+                {dict.card.luz}
+              </span>
             )}
             {propiedad.amenidades.escritura && (
-              <span className="text-xs bg-green-50 text-green-600 px-2 py-0.5 rounded">Escritura</span>
+              <span className="text-xs bg-green-50 text-green-600 px-2 py-0.5 rounded">
+                {dict.card.escritura}
+              </span>
             )}
           </div>
 
