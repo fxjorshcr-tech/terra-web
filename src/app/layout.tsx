@@ -19,9 +19,9 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.orozrealstate.com"),
-  title: "Lotes y Casas CR - Bienes Raíces Costa Rica",
+  title: "Oroz Real Estate - Bienes Raíces Costa Rica",
   description:
-    "Encuentre su propiedad ideal en Costa Rica. Lotes, casas y más con el respaldo del Lic. Gabriel Orozco.",
+    "Encuentre su propiedad ideal en Costa Rica. Lotes, casas y más con el respaldo del Lic. Gabriel Orozco y Grupo Oroz.",
 };
 
 export default function RootLayout({

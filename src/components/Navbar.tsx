@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import Logo from "@/components/Logo";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,12 +19,8 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex-shrink-0">
-            <img
-              src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos/gabriel-logo-trans.png"
-              alt="Lotes y Casas CR"
-              className="h-14 w-auto"
-            />
+          <Link href="/" className="flex-shrink-0" aria-label="Oroz Real Estate - Inicio">
+            <Logo size="sm" />
           </Link>
 
           {/* Centered nav links */}

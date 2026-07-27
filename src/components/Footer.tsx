@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { contacto, whatsappUrl } from "@/data/contacto";
+import { contacto, marca, whatsappUrl } from "@/data/contacto";
 import { FacebookIcon, InstagramIcon, WhatsAppIcon } from "@/components/SocialIcons";
+import Logo from "@/components/Logo";
 
 export default function Footer() {
   const [formData, setFormData] = useState({
@@ -28,15 +29,21 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Logo & descripción */}
           <div>
-            <img
-              src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos/gabriel-logo-trans.png"
-              alt="Lotes y Casas CR"
-              className="h-16 w-auto mb-4 brightness-0 invert"
-            />
+            <div className="mb-4">
+              <Logo light size="md" />
+            </div>
             <p className="text-gray-400 text-sm leading-relaxed">
               Su aliado de confianza en bienes raíces en Costa Rica. Lotes, casas
               y propiedades al mejor precio.
             </p>
+            <a
+              href={marca.grupoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-500 hover:text-accent-500 text-xs mt-3 inline-block transition-colors"
+            >
+              Una empresa de {marca.grupo}
+            </a>
             <div className="flex items-center gap-3 mt-5">
               <a
                 href={contacto.facebook}
@@ -176,7 +183,7 @@ export default function Footer() {
 
         <div className="border-t border-white/10 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-gray-500 text-sm">
           <p>
-            &copy; {new Date().getFullYear()} Lotes y Casas CR. Todos los
+            &copy; {new Date().getFullYear()} {marca.nombre}. Todos los
             derechos reservados.
           </p>
           <p>
