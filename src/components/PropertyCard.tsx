@@ -4,7 +4,7 @@ import { Propiedad } from "@/data/propiedades";
 export default function PropertyCard({ propiedad }: { propiedad: Propiedad }) {
   return (
     <Link href={`/propiedades/${propiedad.id}`} className="group block">
-      <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow border border-gray-100">
+      <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow border border-gray-200">
         <div className="relative h-52 overflow-hidden">
           <img
             src={propiedad.imagen}
@@ -23,7 +23,7 @@ export default function PropertyCard({ propiedad }: { propiedad: Propiedad }) {
           </div>
         </div>
         <div className="p-4">
-          <h3 className="font-bold text-lg text-secondary-700 group-hover:text-primary-600 transition-colors">
+          <h3 className="font-bold text-lg text-secondary-700 group-hover:text-primary-600 transition-colors font-sans">
             {propiedad.titulo}
           </h3>
           <p className="text-gray-500 text-sm mt-1 flex items-center gap-1">
