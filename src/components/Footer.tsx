@@ -5,8 +5,9 @@ import Link from "next/link";
 import { contacto, marca, whatsappUrl } from "@/data/contacto";
 import { FacebookIcon, InstagramIcon, WhatsAppIcon } from "@/components/SocialIcons";
 import Logo from "@/components/Logo";
+import { Dict, Locale, tpl } from "@/i18n/dictionaries";
 
-export default function Footer() {
+export default function Footer({ lang, dict }: { lang: Locale; dict: Dict }) {
   const [formData, setFormData] = useState({
     nombre: "",
     email: "",
@@ -16,12 +17,19 @@ export default function Footer() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const texto = `Hola, soy ${formData.nombre}. ${formData.mensaje} (Email: ${formData.email})`;
+    const texto = `${tpl(dict.contacto.waIntro, { nombre: formData.nombre })} ${formData.mensaje} (Email: ${formData.email})`;
     window.open(whatsappUrl(texto), "_blank");
     setEnviado(true);
     setFormData({ nombre: "", email: "", mensaje: "" });
     setTimeout(() => setEnviado(false), 3000);
   };
+
+  const links = [
+    { href: `/${lang}`, label: dict.nav.inicio },
+    { href: `/${lang}/propiedades`, label: dict.nav.propiedades },
+    { href: `/${lang}/nosotros`, label: dict.nav.nosotros },
+    { href: `/${lang}/contacto`, label: dict.nav.contacto },
+  ];
 
   return (
     <footer className="bg-secondary-800 text-white">
@@ -33,8 +41,7 @@ export default function Footer() {
               <Logo light size="md" />
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Su aliado de confianza en bienes raíces en Costa Rica. Lotes, casas
-              y propiedades al mejor precio.
+              {dict.footer.descripcion}
             </p>
             <a
               href={marca.grupoUrl}
@@ -42,7 +49,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="text-gray-500 hover:text-accent-500 text-xs mt-3 inline-block transition-colors"
             >
-              Una empresa de {marca.grupo}
+              {dict.comun.unaEmpresaDe} {marca.grupo}
             </a>
             <div className="flex items-center gap-3 mt-5">
               <a
@@ -77,34 +84,28 @@ export default function Footer() {
 
           {/* Links */}
           <div>
-            <h3 className="font-semibold text-lg mb-4 font-sans">Enlaces</h3>
+            <h3 className="font-semibold text-lg mb-4 font-sans">
+              {dict.footer.enlaces}
+            </h3>
             <ul className="space-y-2">
-              <li>
-                <Link href="/" className="text-gray-400 hover:text-white text-sm transition-colors">
-                  Inicio
-                </Link>
-              </li>
-              <li>
-                <Link href="/propiedades" className="text-gray-400 hover:text-white text-sm transition-colors">
-                  Propiedades
-                </Link>
-              </li>
-              <li>
-                <Link href="/nosotros" className="text-gray-400 hover:text-white text-sm transition-colors">
-                  Nosotros
-                </Link>
-              </li>
-              <li>
-                <Link href="/contacto" className="text-gray-400 hover:text-white text-sm transition-colors">
-                  Contacto
-                </Link>
-              </li>
+              {links.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-gray-400 hover:text-white text-sm transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Contacto */}
           <div>
-            <h3 className="font-semibold text-lg mb-4 font-sans">Contacto</h3>
+            <h3 className="font-semibold text-lg mb-4 font-sans">
+              {dict.footer.contacto}
+            </h3>
             <ul className="space-y-3 text-gray-400 text-sm">
               <li>
                 <a href={contacto.telefonoHref} className="flex items-center gap-2 hover:text-white transition-colors">
@@ -134,11 +135,13 @@ export default function Footer() {
 
           {/* Formulario de contacto */}
           <div>
-            <h3 className="font-semibold text-lg mb-4 font-sans">Escríbanos</h3>
+            <h3 className="font-semibold text-lg mb-4 font-sans">
+              {dict.footer.escribanos}
+            </h3>
             <form onSubmit={handleSubmit} className="space-y-3">
               <input
                 type="text"
-                placeholder="Nombre"
+                placeholder={dict.footer.phNombre}
                 required
                 value={formData.nombre}
                 onChange={(e) =>
@@ -148,7 +151,7 @@ export default function Footer() {
               />
               <input
                 type="email"
-                placeholder="Email"
+                placeholder={dict.footer.phEmail}
                 required
                 value={formData.email}
                 onChange={(e) =>
@@ -157,7 +160,7 @@ export default function Footer() {
                 className="w-full px-3 py-2 rounded-lg bg-secondary-600 border border-secondary-500 text-white placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-accent-500"
               />
               <textarea
-                placeholder="Mensaje"
+                placeholder={dict.footer.phMensaje}
                 required
                 rows={3}
                 value={formData.mensaje}
@@ -170,11 +173,11 @@ export default function Footer() {
                 type="submit"
                 className="w-full bg-accent-500 hover:bg-accent-600 text-white py-2 rounded-lg font-semibold text-sm transition-colors"
               >
-                Enviar
+                {dict.footer.enviar}
               </button>
               {enviado && (
                 <p className="text-green-400 text-xs text-center">
-                  Mensaje enviado correctamente
+                  {dict.footer.enviadoOk}
                 </p>
               )}
             </form>
@@ -183,8 +186,8 @@ export default function Footer() {
 
         <div className="border-t border-white/10 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-gray-500 text-sm">
           <p>
-            &copy; {new Date().getFullYear()} {marca.nombre}. Todos los
-            derechos reservados.
+            &copy; {new Date().getFullYear()} {marca.nombre}.{" "}
+            {dict.footer.derechos}
           </p>
           <p>
             {contacto.nombre} &middot; {contacto.telefonoDisplay}

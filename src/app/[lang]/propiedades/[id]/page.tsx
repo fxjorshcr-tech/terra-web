@@ -4,6 +4,7 @@ import { propiedades } from "@/data/propiedades";
 import PropertyCard from "@/components/PropertyCard";
 import { contacto, whatsappUrl } from "@/data/contacto";
 import { WhatsAppIcon } from "@/components/SocialIcons";
+import { getDict, Locale, tituloPropiedad, tpl } from "@/i18n/dictionaries";
 
 export function generateStaticParams() {
   return propiedades.map((p) => ({ id: String(p.id) }));
@@ -12,13 +13,17 @@ export function generateStaticParams() {
 export default function PropiedadDetalle({
   params,
 }: {
-  params: { id: string };
+  params: { lang: string; id: string };
 }) {
+  const lang = params.lang as Locale;
+  const dict = getDict(lang);
   const propiedad = propiedades.find((p) => p.id === Number(params.id));
 
   if (!propiedad) {
     notFound();
   }
+
+  const titulo = tituloPropiedad(propiedad, lang, dict);
 
   // Related properties: same type or province, exclude current
   const relacionadas = propiedades
@@ -32,7 +37,7 @@ export default function PropiedadDetalle({
   const amenidadItems = [
     {
       key: "agua" as const,
-      label: "Agua potable",
+      label: dict.detail.aguaPotable,
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m-8-9H3m18 0h-1M5.636 5.636l.707.707M17.657 17.657l.707.707M5.636 18.364l.707-.707M17.657 6.343l.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
@@ -43,7 +48,7 @@ export default function PropiedadDetalle({
     },
     {
       key: "luz" as const,
-      label: "Electricidad",
+      label: dict.detail.electricidad,
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -54,7 +59,7 @@ export default function PropiedadDetalle({
     },
     {
       key: "calle" as const,
-      label: "Calle pavimentada",
+      label: dict.detail.calle,
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
@@ -65,7 +70,7 @@ export default function PropiedadDetalle({
     },
     {
       key: "escritura" as const,
-      label: "Escritura al día",
+      label: dict.detail.escritura,
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -81,11 +86,15 @@ export default function PropiedadDetalle({
       {/* Breadcrumb */}
       <div className="bg-secondary-800 pt-32 md:pt-44 pb-5 px-4">
         <div className="max-w-5xl mx-auto flex items-center gap-2 text-sm text-gray-400">
-          <Link href="/" className="hover:text-accent-500 transition-colors">Inicio</Link>
+          <Link href={`/${lang}`} className="hover:text-accent-500 transition-colors">
+            {dict.nav.inicio}
+          </Link>
           <span>/</span>
-          <Link href="/propiedades" className="hover:text-accent-500 transition-colors">Propiedades</Link>
+          <Link href={`/${lang}/propiedades`} className="hover:text-accent-500 transition-colors">
+            {dict.nav.propiedades}
+          </Link>
           <span>/</span>
-          <span className="text-white">{propiedad.titulo}</span>
+          <span className="text-white">{titulo}</span>
         </div>
       </div>
 
@@ -96,7 +105,7 @@ export default function PropiedadDetalle({
             <div className="h-64 sm:h-72 md:h-96 rounded-xl overflow-hidden">
               <img
                 src={propiedad.imagen}
-                alt={propiedad.titulo}
+                alt={titulo}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -105,7 +114,7 @@ export default function PropiedadDetalle({
                 <div key={i} className="h-32 md:h-44 rounded-xl overflow-hidden">
                   <img
                     src={propiedad.imagen}
-                    alt={`${propiedad.titulo} - Foto ${i}`}
+                    alt={`${titulo} - ${i}`}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -118,16 +127,16 @@ export default function PropiedadDetalle({
             <div className="lg:col-span-2">
               <div className="flex flex-wrap gap-2 items-center">
                 <span className="inline-block bg-primary-100 text-primary-700 text-sm font-semibold px-3 py-1 rounded-full">
-                  {propiedad.tipo}
+                  {dict.tipos[propiedad.tipo]}
                 </span>
                 {propiedad.financiamiento && (
                   <span className="inline-block bg-accent-500 text-white text-sm font-semibold px-3 py-1 rounded-full">
-                    Se acepta financiamiento
+                    {dict.detail.seAcepta}
                   </span>
                 )}
               </div>
               <h1 className="text-3xl font-bold text-secondary-700 mt-3">
-                {propiedad.titulo}
+                {titulo}
               </h1>
               <p className="text-gray-500 mt-1 flex items-center gap-1">
                 <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -145,34 +154,34 @@ export default function PropiedadDetalle({
               <div className="flex flex-wrap gap-6 mt-6 py-6 border-t border-b border-gray-200">
                 <div className="text-center">
                   <p className="text-xl md:text-2xl font-bold text-secondary-700">{propiedad.area}</p>
-                  <p className="text-gray-500 text-sm">Área</p>
+                  <p className="text-gray-500 text-sm">{dict.detail.area}</p>
                 </div>
                 {propiedad.habitaciones && (
                   <div className="text-center">
                     <p className="text-xl md:text-2xl font-bold text-secondary-700">{propiedad.habitaciones}</p>
-                    <p className="text-gray-500 text-sm">Habitaciones</p>
+                    <p className="text-gray-500 text-sm">{dict.detail.habitaciones}</p>
                   </div>
                 )}
                 {propiedad.banos && (
                   <div className="text-center">
                     <p className="text-xl md:text-2xl font-bold text-secondary-700">{propiedad.banos}</p>
-                    <p className="text-gray-500 text-sm">Baños</p>
+                    <p className="text-gray-500 text-sm">{dict.detail.banos}</p>
                   </div>
                 )}
                 <div className="text-center">
                   <p className="text-xl md:text-2xl font-bold text-secondary-700">{propiedad.canton}</p>
-                  <p className="text-gray-500 text-sm">Cantón</p>
+                  <p className="text-gray-500 text-sm">{dict.detail.canton}</p>
                 </div>
                 <div className="text-center">
                   <p className="text-xl md:text-2xl font-bold text-secondary-700">{propiedad.provincia}</p>
-                  <p className="text-gray-500 text-sm">Provincia</p>
+                  <p className="text-gray-500 text-sm">{dict.detail.provincia}</p>
                 </div>
               </div>
 
               {/* Amenidades */}
               <div className="mt-6">
                 <h2 className="text-xl font-bold text-secondary-700 mb-4">
-                  Amenidades y Servicios
+                  {dict.detail.amenidades}
                 </h2>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                   {amenidadItems.map((item) => (
@@ -231,7 +240,7 @@ export default function PropiedadDetalle({
                           : "text-gray-400 line-through"
                       }`}
                     >
-                      Financiamiento
+                      {dict.detail.financiamiento}
                     </span>
                     {propiedad.financiamiento && (
                       <svg className="w-4 h-4 text-green-500 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -245,7 +254,7 @@ export default function PropiedadDetalle({
               {/* Description */}
               <div className="mt-8">
                 <h2 className="text-xl font-bold text-secondary-700 mb-3">
-                  Descripción
+                  {dict.detail.descripcion}
                 </h2>
                 <p className="text-gray-600 leading-relaxed">
                   {propiedad.descripcion}
@@ -267,30 +276,30 @@ export default function PropiedadDetalle({
                   <h3 className="font-bold text-lg text-secondary-700 font-sans">
                     {contacto.nombre}
                   </h3>
-                  <p className="text-gray-500 text-sm">{contacto.cargo}</p>
+                  <p className="text-gray-500 text-sm">{dict.detail.cargoGabriel}</p>
                 </div>
 
                 <div className="mt-6 space-y-3">
                   <a
-                    href={whatsappUrl(`Hola, me interesa la propiedad "${propiedad.titulo}". ¿Podría darme más información?`)}
+                    href={whatsappUrl(tpl(dict.detail.whatsappMsg, { titulo }))}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1ebe5b] text-white py-3 rounded-lg font-semibold transition-colors"
                   >
                     <WhatsAppIcon className="w-5 h-5" />
-                    Escribir por WhatsApp
+                    {dict.detail.escribirWhatsApp}
                   </a>
                   <a
                     href={contacto.telefonoHref}
                     className="w-full block text-center border border-primary-700 text-primary-700 hover:bg-primary-700 hover:text-white py-3 rounded-lg font-semibold transition-colors"
                   >
-                    Llamar {contacto.telefonoDisplay}
+                    {dict.detail.llamar} {contacto.telefonoDisplay}
                   </a>
                   <Link
-                    href="/contacto"
+                    href={`/${lang}/contacto`}
                     className="w-full block text-center border border-gray-300 text-gray-600 hover:border-primary-700 hover:text-primary-700 py-3 rounded-lg font-semibold transition-colors"
                   >
-                    Enviar Consulta
+                    {dict.detail.enviarConsulta}
                   </Link>
                 </div>
               </div>
@@ -304,19 +313,19 @@ export default function PropiedadDetalle({
         <section className="bg-gray-50 py-14 px-4">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-2xl font-bold text-secondary-700 mb-6 text-center">
-              Otras Propiedades que le Pueden Interesar
+              {dict.detail.otras}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {relacionadas.map((prop) => (
-                <PropertyCard key={prop.id} propiedad={prop} />
+                <PropertyCard key={prop.id} propiedad={prop} lang={lang} dict={dict} />
               ))}
             </div>
             <div className="text-center mt-8">
               <Link
-                href="/propiedades"
-                className="inline-block border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors"
+                href={`/${lang}/propiedades`}
+                className="inline-block border border-primary-700 text-primary-700 hover:bg-primary-700 hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors"
               >
-                Ver Todas las Propiedades
+                {dict.comun.verTodas}
               </Link>
             </div>
           </div>

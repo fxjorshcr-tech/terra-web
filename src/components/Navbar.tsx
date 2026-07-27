@@ -3,8 +3,10 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Logo from "@/components/Logo";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { Dict, Locale } from "@/i18n/dictionaries";
 
-export default function Navbar() {
+export default function Navbar({ lang, dict }: { lang: Locale; dict: Dict }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -18,10 +20,10 @@ export default function Navbar() {
   const solid = scrolled || isOpen;
 
   const links = [
-    { href: "/", label: "Inicio" },
-    { href: "/propiedades", label: "Propiedades" },
-    { href: "/nosotros", label: "Nosotros" },
-    { href: "/contacto", label: "Contacto" },
+    { href: `/${lang}`, label: dict.nav.inicio },
+    { href: `/${lang}/propiedades`, label: dict.nav.propiedades },
+    { href: `/${lang}/nosotros`, label: dict.nav.nosotros },
+    { href: `/${lang}/contacto`, label: dict.nav.contacto },
   ];
 
   return (
@@ -39,7 +41,7 @@ export default function Navbar() {
           }`}
         >
           {/* Logo */}
-          <Link href="/" className="flex-shrink-0" aria-label="Oroz Real Estate - Inicio">
+          <Link href={`/${lang}`} className="flex-shrink-0" aria-label="Oroz Real Estate">
             <Logo
               className={`transition-all duration-300 ${
                 scrolled ? "h-16" : "h-28 md:h-40"
@@ -60,28 +62,32 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* CTA button */}
-          <Link
-            href="/contacto"
-            className="hidden md:block bg-accent-500 hover:bg-accent-600 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors"
-          >
-            Contáctenos
-          </Link>
+          <div className="flex items-center gap-3">
+            {/* CTA button */}
+            <Link
+              href={`/${lang}/contacto`}
+              className="hidden md:block bg-accent-500 hover:bg-accent-600 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors"
+            >
+              {dict.nav.contactenos}
+            </Link>
 
-          {/* Mobile menu button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-white drop-shadow"
-            aria-label="Abrir menú"
-          >
-            <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {isOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
+            <LanguageSwitcher lang={lang} />
+
+            {/* Mobile menu button */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="md:hidden text-white drop-shadow"
+              aria-label="Menú"
+            >
+              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {isOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Mobile menu */}
@@ -98,11 +104,11 @@ export default function Navbar() {
               </Link>
             ))}
             <Link
-              href="/contacto"
+              href={`/${lang}/contacto`}
               onClick={() => setIsOpen(false)}
               className="block mt-2 text-center bg-accent-500 text-white px-4 py-2.5 rounded-lg text-sm font-medium"
             >
-              Contáctenos
+              {dict.nav.contactenos}
             </Link>
           </div>
         )}

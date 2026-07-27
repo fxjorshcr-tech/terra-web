@@ -3,15 +3,17 @@
 import { useState } from "react";
 import { contacto, whatsappUrl } from "@/data/contacto";
 import { FacebookIcon, InstagramIcon, WhatsAppIcon } from "@/components/SocialIcons";
+import { getDict, Locale, tpl } from "@/i18n/dictionaries";
 
-const intereses: Record<string, string> = {
-  casa: "Comprar una casa",
-  lote: "Comprar un lote",
-  vender: "Quiero vender mi propiedad",
-  info: "Información general",
-};
+export default function ContactoPage({
+  params,
+}: {
+  params: { lang: string };
+}) {
+  const lang = params.lang as Locale;
+  const dict = getDict(lang);
+  const t = dict.contacto;
 
-export default function ContactoPage() {
   const [formData, setFormData] = useState({
     nombre: "",
     telefono: "",
@@ -20,12 +22,19 @@ export default function ContactoPage() {
     mensaje: "",
   });
 
+  const intereses: Record<string, string> = {
+    casa: t.optCasa,
+    lote: t.optLote,
+    vender: t.optVender,
+    info: t.optInfo,
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const interesTexto = intereses[formData.interes]
-      ? ` Me interesa: ${intereses[formData.interes]}.`
+      ? tpl(t.waInteres, { interes: intereses[formData.interes] })
       : "";
-    const texto = `Hola, soy ${formData.nombre}.${interesTexto} ${formData.mensaje} (Tel: ${formData.telefono}, Email: ${formData.email})`;
+    const texto = `${tpl(t.waIntro, { nombre: formData.nombre })}${interesTexto} ${formData.mensaje} (Tel: ${formData.telefono}, Email: ${formData.email})`;
     window.open(whatsappUrl(texto), "_blank");
   };
 
@@ -34,29 +43,25 @@ export default function ContactoPage() {
       {/* Header */}
       <section className="bg-secondary-700 pt-40 md:pt-52 pb-20 px-4 text-center">
         <p className="text-accent-500 font-semibold text-xs uppercase tracking-[0.25em]">
-          Estamos para servirle
+          {t.overline}
         </p>
-        <h1 className="text-3xl md:text-4xl text-white mt-3">Contáctenos</h1>
+        <h1 className="text-3xl md:text-4xl text-white mt-3">{t.titulo}</h1>
         <div className="w-14 h-0.5 bg-accent-500 mx-auto mt-5" />
-        <p className="text-gray-300 mt-5 max-w-xl mx-auto font-light">
-          Estamos listos para ayudarle a encontrar su propiedad ideal
-        </p>
+        <p className="text-gray-300 mt-5 max-w-xl mx-auto font-light">{t.sub}</p>
       </section>
 
       <section className="py-16 px-4">
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Form */}
           <div>
-            <h2 className="text-2xl text-secondary-700 mb-6">
-              Envíenos un mensaje
-            </h2>
+            <h2 className="text-2xl text-secondary-700 mb-6">{t.formTitulo}</h2>
             <form className="space-y-5" onSubmit={handleSubmit}>
               <div>
                 <label
                   htmlFor="nombre"
                   className="block text-sm font-medium text-gray-700 mb-1"
                 >
-                  Nombre completo
+                  {t.lblNombre}
                 </label>
                 <input
                   type="text"
@@ -68,7 +73,7 @@ export default function ContactoPage() {
                     setFormData({ ...formData, nombre: e.target.value })
                   }
                   className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                  placeholder="Su nombre"
+                  placeholder={t.phNombre}
                 />
               </div>
               <div>
@@ -76,7 +81,7 @@ export default function ContactoPage() {
                   htmlFor="telefono"
                   className="block text-sm font-medium text-gray-700 mb-1"
                 >
-                  Teléfono
+                  {t.lblTelefono}
                 </label>
                 <input
                   type="tel"
@@ -95,7 +100,7 @@ export default function ContactoPage() {
                   htmlFor="email"
                   className="block text-sm font-medium text-gray-700 mb-1"
                 >
-                  Correo electrónico
+                  {t.lblCorreo}
                 </label>
                 <input
                   type="email"
@@ -106,7 +111,7 @@ export default function ContactoPage() {
                     setFormData({ ...formData, email: e.target.value })
                   }
                   className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                  placeholder="su@correo.com"
+                  placeholder={t.phCorreo}
                 />
               </div>
               <div>
@@ -114,7 +119,7 @@ export default function ContactoPage() {
                   htmlFor="interes"
                   className="block text-sm font-medium text-gray-700 mb-1"
                 >
-                  ¿Qué le interesa?
+                  {t.lblInteres}
                 </label>
                 <select
                   id="interes"
@@ -125,11 +130,11 @@ export default function ContactoPage() {
                   }
                   className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                 >
-                  <option value="">Seleccione una opción</option>
-                  <option value="casa">Comprar una casa</option>
-                  <option value="lote">Comprar un lote</option>
-                  <option value="vender">Quiero vender mi propiedad</option>
-                  <option value="info">Información general</option>
+                  <option value="">{t.optSeleccione}</option>
+                  <option value="casa">{t.optCasa}</option>
+                  <option value="lote">{t.optLote}</option>
+                  <option value="vender">{t.optVender}</option>
+                  <option value="info">{t.optInfo}</option>
                 </select>
               </div>
               <div>
@@ -137,7 +142,7 @@ export default function ContactoPage() {
                   htmlFor="mensaje"
                   className="block text-sm font-medium text-gray-700 mb-1"
                 >
-                  Mensaje
+                  {t.lblMensaje}
                 </label>
                 <textarea
                   id="mensaje"
@@ -149,27 +154,22 @@ export default function ContactoPage() {
                     setFormData({ ...formData, mensaje: e.target.value })
                   }
                   className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
-                  placeholder="Cuéntenos qué busca..."
+                  placeholder={t.phMensaje}
                 />
               </div>
               <button
                 type="submit"
                 className="w-full bg-primary-700 hover:bg-primary-800 text-white py-3 rounded-lg font-semibold text-lg transition-colors"
               >
-                Enviar Mensaje
+                {t.enviar}
               </button>
-              <p className="text-gray-400 text-xs text-center">
-                Al enviar, se abrirá WhatsApp con su mensaje listo para
-                enviarnos.
-              </p>
+              <p className="text-gray-400 text-xs text-center">{t.nota}</p>
             </form>
           </div>
 
           {/* Contact info */}
           <div>
-            <h2 className="text-2xl text-secondary-700 mb-6">
-              Información de Contacto
-            </h2>
+            <h2 className="text-2xl text-secondary-700 mb-6">{t.infoTitulo}</h2>
 
             {/* Gabriel card */}
             <div className="bg-gray-50 rounded-xl p-6 mb-6 border border-gray-100">
@@ -185,7 +185,7 @@ export default function ContactoPage() {
                   <h3 className="font-bold text-secondary-700 font-sans">
                     {contacto.nombre}
                   </h3>
-                  <p className="text-gray-500 text-sm">{contacto.cargo}</p>
+                  <p className="text-gray-500 text-sm">{t.cargoGabriel}</p>
                 </div>
               </div>
             </div>
@@ -199,7 +199,7 @@ export default function ContactoPage() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-secondary-700 font-sans">
-                    Teléfono
+                    {t.telefono}
                   </h3>
                   <a
                     href={contacto.telefonoHref}
@@ -216,7 +216,7 @@ export default function ContactoPage() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-secondary-700 font-sans">
-                    WhatsApp
+                    {t.whatsapp}
                   </h3>
                   <a
                     href={whatsappUrl()}
@@ -237,7 +237,7 @@ export default function ContactoPage() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-secondary-700 font-sans">
-                    Correo Electrónico
+                    {t.correo}
                   </h3>
                   <a
                     href={`mailto:${contacto.email}`}
@@ -257,18 +257,16 @@ export default function ContactoPage() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-secondary-700 font-sans">
-                    Ubicación
+                    {t.ubicacion}
                   </h3>
-                  <p className="text-gray-500">{contacto.ubicacion}</p>
+                  <p className="text-gray-500">{t.pais}</p>
                 </div>
               </div>
             </div>
 
             {/* Redes sociales */}
             <div className="mt-8 p-6 bg-gray-50 border border-gray-100 rounded-xl text-center">
-              <p className="text-gray-600 text-sm mb-4">
-                Síganos en nuestras redes sociales
-              </p>
+              <p className="text-gray-600 text-sm mb-4">{t.siganos}</p>
               <div className="flex justify-center gap-3">
                 <a
                   href={contacto.facebook}
