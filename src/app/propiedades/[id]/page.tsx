@@ -93,14 +93,14 @@ export default function PropiedadDetalle({
         <div className="max-w-5xl mx-auto">
           {/* Gallery */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-            <div className="h-72 md:h-96 rounded-xl overflow-hidden">
+            <div className="h-64 sm:h-72 md:h-96 rounded-xl overflow-hidden">
               <img
                 src={propiedad.imagen}
                 alt={propiedad.titulo}
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="hidden md:grid grid-cols-2 gap-4">
               {[1, 2, 3, 4].map((i) => (
                 <div key={i} className="h-32 md:h-44 rounded-xl overflow-hidden">
                   <img
@@ -144,27 +144,27 @@ export default function PropiedadDetalle({
               {/* Details */}
               <div className="flex flex-wrap gap-6 mt-6 py-6 border-t border-b border-gray-200">
                 <div className="text-center">
-                  <p className="text-2xl font-bold text-secondary-700">{propiedad.area}</p>
+                  <p className="text-xl md:text-2xl font-bold text-secondary-700">{propiedad.area}</p>
                   <p className="text-gray-500 text-sm">Área</p>
                 </div>
                 {propiedad.habitaciones && (
                   <div className="text-center">
-                    <p className="text-2xl font-bold text-secondary-700">{propiedad.habitaciones}</p>
+                    <p className="text-xl md:text-2xl font-bold text-secondary-700">{propiedad.habitaciones}</p>
                     <p className="text-gray-500 text-sm">Habitaciones</p>
                   </div>
                 )}
                 {propiedad.banos && (
                   <div className="text-center">
-                    <p className="text-2xl font-bold text-secondary-700">{propiedad.banos}</p>
+                    <p className="text-xl md:text-2xl font-bold text-secondary-700">{propiedad.banos}</p>
                     <p className="text-gray-500 text-sm">Baños</p>
                   </div>
                 )}
                 <div className="text-center">
-                  <p className="text-2xl font-bold text-secondary-700">{propiedad.canton}</p>
+                  <p className="text-xl md:text-2xl font-bold text-secondary-700">{propiedad.canton}</p>
                   <p className="text-gray-500 text-sm">Cantón</p>
                 </div>
                 <div className="text-center">
-                  <p className="text-2xl font-bold text-secondary-700">{propiedad.provincia}</p>
+                  <p className="text-xl md:text-2xl font-bold text-secondary-700">{propiedad.provincia}</p>
                   <p className="text-gray-500 text-sm">Provincia</p>
                 </div>
               </div>

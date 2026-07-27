@@ -12,7 +12,7 @@ export default function Logo({
   const heights = {
     sm: "h-16",
     md: "h-24",
-    lg: "h-48 md:h-64",
+    lg: "h-40 md:h-64",
   }[size];
 
   return (

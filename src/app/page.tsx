@@ -9,13 +9,13 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative h-[80vh] min-h-[520px] flex items-center justify-center">
+      <section className="relative min-h-[80vh] flex items-center justify-center py-20 md:py-24">
         <img
           src={marca.heroImagen}
           alt="Bienes Raíces Costa Rica"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-secondary-800/70 via-secondary-800/40 to-secondary-800/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-secondary-800/70 via-secondary-800/55 to-secondary-800/80" />
         <div className="relative z-10 text-center px-4 max-w-3xl mx-auto drop-shadow-2xl">
           <Logo light size="lg" />
           <p className="text-accent-500 uppercase tracking-[0.3em] text-xs md:text-sm mt-8 font-medium">
