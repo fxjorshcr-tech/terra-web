@@ -1,10 +1,17 @@
+export type EstadoPropiedad = "nuevo" | "rebajado" | "vendido" | "reservado";
+
 export interface Propiedad {
   id: number;
   titulo: string;
   provincia: string;
   canton: string;
   lugarEspecifico: string;
-  precio: string;
+  /** Precio en colones (CRC). */
+  precio: number;
+  /** Precio anterior en colones; se muestra tachado cuando el estado es "rebajado". */
+  precioAnterior?: number;
+  /** Sin estado = disponible sin badge especial. */
+  estado?: EstadoPropiedad;
   tipo: "Casa" | "Lote" | "Finca" | "Otro";
   area: string;
   habitaciones?: number;
@@ -18,9 +25,29 @@ export interface Propiedad {
     escritura: boolean;
   };
   financiamiento: boolean;
+  /** Consulta opcional para el mapa; si falta se usa lugar + cantón + provincia. */
+  mapsQuery?: string;
 }
 
 export const tipos: Propiedad["tipo"][] = ["Casa", "Lote", "Finca", "Otro"];
+
+// Tipo de cambio de referencia para mostrar el precio aproximado en dólares.
+export const TIPO_CAMBIO_CRC_USD = 510;
+
+export function formatCRC(monto: number): string {
+  return `₡${monto.toLocaleString("es-CR")}`;
+}
+
+export function formatUSD(montoCRC: number): string {
+  const usd = Math.round(montoCRC / TIPO_CAMBIO_CRC_USD / 100) * 100;
+  return `$${usd.toLocaleString("en-US")}`;
+}
+
+export function mapsQueryDe(p: Propiedad): string {
+  return (
+    p.mapsQuery ?? `${p.lugarEspecifico}, ${p.canton}, ${p.provincia}, Costa Rica`
+  );
+}
 
 const IMG =
   "https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos/Los-siete-pasos-que-debes-seguir-si-quieres-vender-tu-casa-y-hacer-crecer-tu-patrimonio.jpg";
@@ -32,7 +59,8 @@ export const propiedades: Propiedad[] = [
     provincia: "San José",
     canton: "San José",
     lugarEspecifico: "Barrio Amón",
-    precio: "₡45,000,000",
+    precio: 45_000_000,
+    estado: "nuevo",
     tipo: "Casa",
     area: "120 m²",
     habitaciones: 3,
@@ -49,7 +77,7 @@ export const propiedades: Propiedad[] = [
     provincia: "Alajuela",
     canton: "San Ramón",
     lugarEspecifico: "Urbanización Los Ángeles",
-    precio: "₡18,500,000",
+    precio: 18_500_000,
     tipo: "Lote",
     area: "300 m²",
     descripcion:
@@ -64,7 +92,7 @@ export const propiedades: Propiedad[] = [
     provincia: "Heredia",
     canton: "Santo Domingo",
     lugarEspecifico: "San Vicente",
-    precio: "₡52,000,000",
+    precio: 52_000_000,
     tipo: "Casa",
     area: "150 m²",
     habitaciones: 4,
@@ -81,7 +109,9 @@ export const propiedades: Propiedad[] = [
     provincia: "Cartago",
     canton: "Paraíso",
     lugarEspecifico: "Valle de Orosi",
-    precio: "₡12,000,000",
+    precio: 12_000_000,
+    precioAnterior: 14_500_000,
+    estado: "rebajado",
     tipo: "Lote",
     area: "250 m²",
     descripcion:
@@ -96,7 +126,7 @@ export const propiedades: Propiedad[] = [
     provincia: "San José",
     canton: "Desamparados",
     lugarEspecifico: "San Rafael Abajo",
-    precio: "₡38,000,000",
+    precio: 38_000_000,
     tipo: "Casa",
     area: "100 m²",
     habitaciones: 3,
@@ -113,7 +143,7 @@ export const propiedades: Propiedad[] = [
     provincia: "Alajuela",
     canton: "Grecia",
     lugarEspecifico: "Barrio San Roque",
-    precio: "₡15,000,000",
+    precio: 15_000_000,
     tipo: "Lote",
     area: "400 m²",
     descripcion:
@@ -128,7 +158,8 @@ export const propiedades: Propiedad[] = [
     provincia: "Guanacaste",
     canton: "Nicoya",
     lugarEspecifico: "Quebrada Honda",
-    precio: "₡35,000,000",
+    precio: 35_000_000,
+    estado: "reservado",
     tipo: "Finca",
     area: "5,000 m²",
     descripcion:
@@ -143,7 +174,7 @@ export const propiedades: Propiedad[] = [
     provincia: "Puntarenas",
     canton: "Esparza",
     lugarEspecifico: "Residencial Monte Verde",
-    precio: "₡42,000,000",
+    precio: 42_000_000,
     tipo: "Casa",
     area: "130 m²",
     habitaciones: 3,
@@ -160,7 +191,8 @@ export const propiedades: Propiedad[] = [
     provincia: "Limón",
     canton: "Pococí",
     lugarEspecifico: "Guápiles Centro",
-    precio: "₡9,500,000",
+    precio: 9_500_000,
+    estado: "vendido",
     tipo: "Lote",
     area: "350 m²",
     descripcion:
@@ -170,3 +202,13 @@ export const propiedades: Propiedad[] = [
     financiamiento: false,
   },
 ];
+
+/** Provincias presentes en el portafolio, en orden alfabético. */
+export const provinciasDisponibles = Array.from(
+  new Set(propiedades.map((p) => p.provincia))
+).sort((a, b) => a.localeCompare(b, "es"));
+
+/** Propiedades aún a la venta (excluye vendidas). */
+export const propiedadesDisponibles = propiedades.filter(
+  (p) => p.estado !== "vendido"
+);

@@ -1,7 +1,16 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { propiedades } from "@/data/propiedades";
+import {
+  Propiedad,
+  propiedades,
+  formatCRC,
+  formatUSD,
+} from "@/data/propiedades";
 import PropertyCard from "@/components/PropertyCard";
+import FinancingCalculator from "@/components/FinancingCalculator";
+import ShareButtons from "@/components/ShareButtons";
+import PropertyMap from "@/components/PropertyMap";
 import { contacto, whatsappUrl } from "@/data/contacto";
 import { WhatsAppIcon } from "@/components/SocialIcons";
 import { getDict, Locale, tituloPropiedad, tpl } from "@/i18n/dictionaries";
@@ -9,6 +18,36 @@ import { getDict, Locale, tituloPropiedad, tpl } from "@/i18n/dictionaries";
 export function generateStaticParams() {
   return propiedades.map((p) => ({ id: String(p.id) }));
 }
+
+export function generateMetadata({
+  params,
+}: {
+  params: { lang: string; id: string };
+}): Metadata {
+  const lang = params.lang as Locale;
+  const dict = getDict(lang);
+  const propiedad = propiedades.find((p) => p.id === Number(params.id));
+  if (!propiedad) return {};
+  const titulo = tituloPropiedad(propiedad, lang, dict);
+  const descripcion = `${formatCRC(propiedad.precio)} (≈ ${formatUSD(propiedad.precio)} USD) · ${propiedad.area} · ${propiedad.lugarEspecifico}, ${propiedad.canton}, ${propiedad.provincia}. ${propiedad.descripcion.slice(0, 120)}...`;
+  return {
+    title: `${titulo} | Oroz Real Estate`,
+    description: descripcion,
+    openGraph: {
+      title: titulo,
+      description: descripcion,
+      images: [{ url: propiedad.imagen }],
+      type: "website",
+    },
+  };
+}
+
+const estadoEstilos: Record<NonNullable<Propiedad["estado"]>, string> = {
+  nuevo: "bg-emerald-600",
+  rebajado: "bg-red-600",
+  vendido: "bg-gray-900",
+  reservado: "bg-amber-500",
+};
 
 export default function PropiedadDetalle({
   params,
@@ -81,8 +120,37 @@ export default function PropiedadDetalle({
     },
   ];
 
+  // Datos estructurados para buscadores (rich results de Google).
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "RealEstateListing",
+    name: titulo,
+    description: propiedad.descripcion,
+    image: propiedad.imagen,
+    url: `https://www.orozrealstate.com/${lang}/propiedades/${propiedad.id}`,
+    offers: {
+      "@type": "Offer",
+      price: propiedad.precio,
+      priceCurrency: "CRC",
+      availability:
+        propiedad.estado === "vendido"
+          ? "https://schema.org/SoldOut"
+          : "https://schema.org/InStock",
+    },
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: propiedad.canton,
+      addressRegion: propiedad.provincia,
+      addressCountry: "CR",
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Breadcrumb */}
       <div className="bg-secondary-800 pt-32 md:pt-44 pb-5 px-4">
         <div className="max-w-5xl mx-auto flex items-center gap-2 text-sm text-gray-400">
@@ -129,6 +197,13 @@ export default function PropiedadDetalle({
                 <span className="inline-block bg-primary-100 text-primary-700 text-sm font-semibold px-3 py-1 rounded-full">
                   {dict.tipos[propiedad.tipo]}
                 </span>
+                {propiedad.estado && (
+                  <span
+                    className={`inline-block ${estadoEstilos[propiedad.estado]} text-white text-sm font-semibold px-3 py-1 rounded-full`}
+                  >
+                    {dict.estados[propiedad.estado]}
+                  </span>
+                )}
                 {propiedad.financiamiento && (
                   <span className="inline-block bg-accent-500 text-white text-sm font-semibold px-3 py-1 rounded-full">
                     {dict.detail.seAcepta}
@@ -146,8 +221,18 @@ export default function PropiedadDetalle({
                 {propiedad.lugarEspecifico}, {propiedad.canton}, {propiedad.provincia}
               </p>
 
-              <p className="text-primary-700 font-bold text-3xl mt-4">
-                {propiedad.precio}
+              <div className="mt-4 flex items-baseline gap-3 flex-wrap">
+                <p className="text-primary-700 font-bold text-3xl">
+                  {formatCRC(propiedad.precio)}
+                </p>
+                {propiedad.precioAnterior && (
+                  <p className="text-gray-400 text-xl line-through">
+                    {formatCRC(propiedad.precioAnterior)}
+                  </p>
+                )}
+              </div>
+              <p className="text-gray-500 text-lg">
+                ≈ {formatUSD(propiedad.precio)} USD
               </p>
 
               {/* Details */}
@@ -260,6 +345,23 @@ export default function PropiedadDetalle({
                   {propiedad.descripcion}
                 </p>
               </div>
+
+              {/* Compartir */}
+              <div className="mt-6 pt-6 border-t border-gray-200">
+                <ShareButtons titulo={titulo} dict={dict} />
+              </div>
+
+              {/* Mapa */}
+              <PropertyMap propiedad={propiedad} dict={dict} />
+
+              {/* Calculadora de financiamiento */}
+              {propiedad.financiamiento && propiedad.estado !== "vendido" && (
+                <FinancingCalculator
+                  precio={propiedad.precio}
+                  titulo={titulo}
+                  dict={dict}
+                />
+              )}
             </div>
 
             {/* Sidebar - Agent card */}

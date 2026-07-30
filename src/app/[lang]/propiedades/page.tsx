@@ -1,5 +1,5 @@
-import PropertyCard from "@/components/PropertyCard";
-import { propiedades } from "@/data/propiedades";
+import { Suspense } from "react";
+import PropertyExplorer from "@/components/PropertyExplorer";
 import { marca } from "@/data/contacto";
 import { getDict, Locale } from "@/i18n/dictionaries";
 
@@ -14,7 +14,7 @@ export default function PropiedadesPage({
   return (
     <>
       {/* Header */}
-      <section className="relative pt-44 pb-24 md:pt-56 md:pb-28 px-4 text-center overflow-hidden">
+      <section className="relative pt-44 pb-24 md:pt-56 md:pb-32 px-4 text-center overflow-hidden">
         <img
           src={marca.heroImagen}
           alt="Costa Rica"
@@ -35,20 +35,12 @@ export default function PropiedadesPage({
         </div>
       </section>
 
-      {/* Listings */}
-      <section className="py-12 px-4">
+      {/* Filtros + Listings */}
+      <section className="pb-16 px-4">
         <div className="max-w-6xl mx-auto">
-          <p className="text-gray-500 text-sm mb-6">
-            {propiedades.length}{" "}
-            {propiedades.length !== 1
-              ? dict.propsPage.disponiblePlural
-              : dict.propsPage.disponibleSing}
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {propiedades.map((prop) => (
-              <PropertyCard key={prop.id} propiedad={prop} lang={lang} dict={dict} />
-            ))}
-          </div>
+          <Suspense>
+            <PropertyExplorer lang={lang} dict={dict} />
+          </Suspense>
         </div>
       </section>
     </>
