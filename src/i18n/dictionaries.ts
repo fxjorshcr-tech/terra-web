@@ -20,6 +20,7 @@ const es = {
   nav: {
     inicio: "Inicio",
     propiedades: "Propiedades",
+    vender: "Vender",
     nosotros: "Nosotros",
     contacto: "Contacto",
     contactenos: "Contáctenos",
@@ -164,6 +165,135 @@ const es = {
     enviadoOk: "Mensaje enviado correctamente",
     derechos: "Todos los derechos reservados.",
   },
+  estados: {
+    nuevo: "Nuevo",
+    rebajado: "Precio rebajado",
+    vendido: "Vendido",
+    reservado: "Reservado",
+  },
+  buscador: {
+    tipo: "Tipo de propiedad",
+    provincia: "Provincia",
+    todosTipos: "Todos los tipos",
+    todasProvincias: "Todas las provincias",
+    buscar: "Buscar",
+  },
+  filtros: {
+    buscarPh: "Buscar por nombre o lugar...",
+    precioMax: "Precio máximo",
+    sinLimite: "Sin límite",
+    habitaciones: "Habitaciones",
+    cualquiera: "Cualquiera",
+    ordenar: "Ordenar por",
+    ordenRecientes: "Más recientes",
+    ordenPrecioAsc: "Precio: menor a mayor",
+    ordenPrecioDesc: "Precio: mayor a menor",
+    limpiar: "Limpiar filtros",
+    mostrando: "Mostrando {n} de {total} propiedades",
+    sinResultados:
+      "No encontramos propiedades con esos filtros. Pruebe ajustar la búsqueda o contáctenos: es posible que tengamos justo lo que busca.",
+  },
+  invertir: {
+    overline: "Costa Rica",
+    titulo: "¿Por qué invertir en Costa Rica?",
+    sub: "Uno de los mercados inmobiliarios más atractivos y estables de América Latina",
+    item1t: "Seguridad jurídica",
+    item1p:
+      "Costa Rica cuenta con un Registro Nacional de la Propiedad sólido y décadas de estabilidad democrática. Su inversión queda inscrita y protegida por ley.",
+    item2t: "Extranjeros con plenos derechos",
+    item2p:
+      "Los extranjeros pueden comprar propiedades con los mismos derechos que los costarricenses, sin necesidad de residencia.",
+    item3t: "Plusvalía en crecimiento",
+    item3p:
+      "El valor de la tierra crece de forma sostenida, especialmente en zonas turísticas y de desarrollo. Comprar hoy es asegurar el mañana.",
+    item4t: "Calidad de vida incomparable",
+    item4p:
+      "Clima privilegiado todo el año, naturaleza exuberante, estabilidad política y el famoso 'Pura Vida'. Un lugar para vivir o vacacionar.",
+    pasosOverline: "Guía del comprador",
+    pasosTitulo: "Comprar su propiedad en 4 pasos",
+    paso1t: "Cuéntenos qué busca",
+    paso1p:
+      "Escríbanos por WhatsApp o llene el formulario. Le presentamos opciones que se ajusten a su presupuesto y necesidades.",
+    paso2t: "Visite la propiedad",
+    paso2p:
+      "Coordinamos visitas para que conozca la propiedad en persona. Le acompañamos y resolvemos todas sus dudas.",
+    paso3t: "Verificación legal",
+    paso3p:
+      "Como abogados, realizamos el estudio registral completo: escritura, gravámenes, planos y permisos. Todo transparente.",
+    paso4t: "Firma y traspaso",
+    paso4p:
+      "Firmamos ante notario y el traspaso queda inscrito en el Registro Nacional. La propiedad es oficialmente suya.",
+  },
+  calc: {
+    titulo: "Calculadora de financiamiento",
+    prima: "Prima inicial",
+    plazo: "Plazo",
+    anios: "años",
+    tasa: "Tasa de interés anual",
+    montoFinanciar: "Monto a financiar",
+    cuota: "Cuota mensual estimada",
+    nota: "Cálculo aproximado con fines informativos. Las condiciones reales dependen de la entidad financiera.",
+    consultar: "Consultar financiamiento",
+    waMsg:
+      'Hola, me interesa financiar la propiedad "{titulo}". ¿Podría darme más información sobre las opciones?',
+  },
+  compartir: {
+    titulo: "Compartir esta propiedad",
+    copiar: "Copiar enlace",
+    copiado: "¡Enlace copiado!",
+  },
+  mapa: {
+    titulo: "Ubicación",
+    aproxNota: "La ubicación mostrada en el mapa es aproximada.",
+  },
+  vender: {
+    overline: "Venda con nosotros",
+    titulo: "Venda su Propiedad",
+    sub: "Publique su propiedad con el respaldo legal y comercial de Oroz Real Estate",
+    benef1t: "Publicación sin costo",
+    benef1p:
+      "Evaluamos su propiedad y la publicamos en nuestro portafolio sin costo inicial. Solo ganamos cuando usted vende.",
+    benef2t: "Respaldo legal completo",
+    benef2p:
+      "Como abogados, nos encargamos de toda la documentación: estudio registral, escritura y traspaso ante notario.",
+    benef3t: "Compradores reales",
+    benef3p:
+      "Conectamos su propiedad con compradores nacionales y extranjeros interesados en invertir en Costa Rica.",
+    formTitulo: "Cuéntenos sobre su propiedad",
+    lblTipo: "Tipo de propiedad",
+    lblUbicacion: "Ubicación",
+    phUbicacion: "Provincia, cantón y lugar específico",
+    lblPrecio: "Precio esperado (opcional)",
+    phPrecio: "₡ o $ monto aproximado",
+    lblDetalles: "Detalles de la propiedad",
+    phDetalles: "Área, habitaciones, estado, escritura, etc.",
+    enviar: "Enviar Información",
+    waIntro: "Hola, soy {nombre} y quiero vender mi propiedad.",
+    waDetalle: " Tipo: {tipo}. Ubicación: {ubicacion}.",
+    waPrecio: " Precio esperado: {precio}.",
+  },
+  faq: {
+    overline: "Preguntas frecuentes",
+    titulo: "Resolvemos sus dudas",
+    q1: "¿Pueden los extranjeros comprar propiedades en Costa Rica?",
+    a1: "Sí. Los extranjeros pueden comprar propiedades tituladas con los mismos derechos que los costarricenses, sin necesidad de ser residentes. Solo necesita un pasaporte válido. Le acompañamos en todo el proceso, en español o inglés.",
+    q2: "¿Cuánto tarda el proceso de compra?",
+    a2: "Una compra típica tarda entre 4 y 6 semanas: estudio registral, redacción de la escritura, firma ante notario e inscripción en el Registro Nacional. Si hay financiamiento bancario, el plazo puede extenderse un poco más.",
+    q3: "¿Qué costos adicionales debo considerar?",
+    a3: "Además del precio, considere los gastos de traspaso (impuesto de traspaso, timbres y honorarios notariales), que en conjunto rondan el 4% a 5% del valor de la propiedad. Le entregamos un desglose claro antes de firmar.",
+    q4: "¿Cómo verifican las propiedades que venden?",
+    a4: "Antes de publicar una propiedad realizamos un estudio registral completo: verificamos la escritura, que no existan gravámenes ni anotaciones, el plano catastrado y el estado de los impuestos. Usted compra con seguridad.",
+    q5: "¿Ofrecen opciones de financiamiento?",
+    a5: "Varias de nuestras propiedades aceptan financiamiento bancario o arreglos de pago directos con el vendedor. Busque la etiqueta 'Financiamiento' en el listado o consúltenos por WhatsApp.",
+  },
+  newsletter: {
+    titulo: "Reciba las nuevas propiedades antes que nadie",
+    sub: "Déjenos su correo y le avisamos cuando publiquemos nuevas oportunidades.",
+    ph: "Su correo electrónico",
+    btn: "Quiero recibir alertas",
+    waMsg:
+      "Hola, quiero recibir alertas de nuevas propiedades. Mi correo es: {email}",
+  },
 };
 
 export type Dict = typeof es;
@@ -177,6 +307,7 @@ const en: Dict = {
   nav: {
     inicio: "Home",
     propiedades: "Properties",
+    vender: "Sell",
     nosotros: "About Us",
     contacto: "Contact",
     contactenos: "Contact Us",
@@ -319,6 +450,134 @@ const en: Dict = {
     enviadoOk: "Message sent successfully",
     derechos: "All rights reserved.",
   },
+  estados: {
+    nuevo: "New",
+    rebajado: "Price reduced",
+    vendido: "Sold",
+    reservado: "Reserved",
+  },
+  buscador: {
+    tipo: "Property type",
+    provincia: "Province",
+    todosTipos: "All types",
+    todasProvincias: "All provinces",
+    buscar: "Search",
+  },
+  filtros: {
+    buscarPh: "Search by name or place...",
+    precioMax: "Max price",
+    sinLimite: "No limit",
+    habitaciones: "Bedrooms",
+    cualquiera: "Any",
+    ordenar: "Sort by",
+    ordenRecientes: "Most recent",
+    ordenPrecioAsc: "Price: low to high",
+    ordenPrecioDesc: "Price: high to low",
+    limpiar: "Clear filters",
+    mostrando: "Showing {n} of {total} properties",
+    sinResultados:
+      "No properties match those filters. Try adjusting your search or contact us — we may have just what you are looking for.",
+  },
+  invertir: {
+    overline: "Costa Rica",
+    titulo: "Why invest in Costa Rica?",
+    sub: "One of the most attractive and stable real estate markets in Latin America",
+    item1t: "Legal certainty",
+    item1p:
+      "Costa Rica has a solid National Property Registry and decades of democratic stability. Your investment is registered and protected by law.",
+    item2t: "Full rights for foreigners",
+    item2p:
+      "Foreigners can buy property with the same rights as Costa Ricans — no residency required.",
+    item3t: "Growing property values",
+    item3p:
+      "Land value grows steadily, especially in tourist and developing areas. Buying today secures tomorrow.",
+    item4t: "Unmatched quality of life",
+    item4p:
+      "Year-round perfect climate, lush nature, political stability and the famous 'Pura Vida'. A place to live or vacation.",
+    pasosOverline: "Buyer's guide",
+    pasosTitulo: "Buy your property in 4 steps",
+    paso1t: "Tell us what you need",
+    paso1p:
+      "Message us on WhatsApp or fill out the form. We present options that fit your budget and needs.",
+    paso2t: "Visit the property",
+    paso2p:
+      "We arrange visits so you can see the property in person. We accompany you and answer all your questions.",
+    paso3t: "Legal verification",
+    paso3p:
+      "As attorneys, we run the full title search: deed, liens, survey plans and permits. Everything transparent.",
+    paso4t: "Signing & transfer",
+    paso4p:
+      "We sign before a notary and the transfer is recorded in the National Registry. The property is officially yours.",
+  },
+  calc: {
+    titulo: "Financing calculator",
+    prima: "Down payment",
+    plazo: "Term",
+    anios: "years",
+    tasa: "Annual interest rate",
+    montoFinanciar: "Amount to finance",
+    cuota: "Estimated monthly payment",
+    nota: "Approximate calculation for informational purposes. Actual terms depend on the lender.",
+    consultar: "Ask about financing",
+    waMsg:
+      'Hello, I am interested in financing the property "{titulo}". Could you give me more information about the options?',
+  },
+  compartir: {
+    titulo: "Share this property",
+    copiar: "Copy link",
+    copiado: "Link copied!",
+  },
+  mapa: {
+    titulo: "Location",
+    aproxNota: "The location shown on the map is approximate.",
+  },
+  vender: {
+    overline: "Sell with us",
+    titulo: "Sell Your Property",
+    sub: "List your property with the legal and commercial backing of Oroz Real Estate",
+    benef1t: "Free listing",
+    benef1p:
+      "We evaluate your property and list it in our portfolio at no upfront cost. We only earn when you sell.",
+    benef2t: "Full legal backing",
+    benef2p:
+      "As attorneys, we handle all the paperwork: title search, deed and transfer before a notary.",
+    benef3t: "Real buyers",
+    benef3p:
+      "We connect your property with national and international buyers interested in investing in Costa Rica.",
+    formTitulo: "Tell us about your property",
+    lblTipo: "Property type",
+    lblUbicacion: "Location",
+    phUbicacion: "Province, canton and specific place",
+    lblPrecio: "Expected price (optional)",
+    phPrecio: "₡ or $ approximate amount",
+    lblDetalles: "Property details",
+    phDetalles: "Area, bedrooms, condition, title deed, etc.",
+    enviar: "Send Information",
+    waIntro: "Hello, my name is {nombre} and I want to sell my property.",
+    waDetalle: " Type: {tipo}. Location: {ubicacion}.",
+    waPrecio: " Expected price: {precio}.",
+  },
+  faq: {
+    overline: "Frequently asked questions",
+    titulo: "We answer your questions",
+    q1: "Can foreigners buy property in Costa Rica?",
+    a1: "Yes. Foreigners can buy titled property with the same rights as Costa Ricans, no residency required. All you need is a valid passport. We guide you through the whole process, in English or Spanish.",
+    q2: "How long does the buying process take?",
+    a2: "A typical purchase takes 4 to 6 weeks: title search, deed drafting, signing before a notary and registration in the National Registry. With bank financing the timeline can extend a bit.",
+    q3: "What additional costs should I consider?",
+    a3: "Besides the price, budget for closing costs (transfer tax, stamps and notary fees), which together are around 4% to 5% of the property value. We give you a clear breakdown before signing.",
+    q4: "How do you verify the properties you sell?",
+    a4: "Before listing a property we run a full title search: we verify the deed, that there are no liens or annotations, the cadastral survey and the tax status. You buy with confidence.",
+    q5: "Do you offer financing options?",
+    a5: "Several of our properties accept bank financing or direct payment arrangements with the seller. Look for the 'Financing' tag in the listings or ask us on WhatsApp.",
+  },
+  newsletter: {
+    titulo: "Get new properties before anyone else",
+    sub: "Leave us your email and we will let you know when new opportunities are listed.",
+    ph: "Your email address",
+    btn: "Send me alerts",
+    waMsg: "Hello, I want to receive alerts about new properties. My email is: {email}",
+  },
 };
 
 const fr: Dict = {
@@ -330,6 +589,7 @@ const fr: Dict = {
   nav: {
     inicio: "Accueil",
     propiedades: "Propriétés",
+    vender: "Vendre",
     nosotros: "À Propos",
     contacto: "Contact",
     contactenos: "Contactez-nous",
@@ -474,6 +734,135 @@ const fr: Dict = {
     enviadoOk: "Message envoyé avec succès",
     derechos: "Tous droits réservés.",
   },
+  estados: {
+    nuevo: "Nouveau",
+    rebajado: "Prix réduit",
+    vendido: "Vendu",
+    reservado: "Réservé",
+  },
+  buscador: {
+    tipo: "Type de propriété",
+    provincia: "Province",
+    todosTipos: "Tous les types",
+    todasProvincias: "Toutes les provinces",
+    buscar: "Rechercher",
+  },
+  filtros: {
+    buscarPh: "Rechercher par nom ou lieu...",
+    precioMax: "Prix maximum",
+    sinLimite: "Sans limite",
+    habitaciones: "Chambres",
+    cualquiera: "Toutes",
+    ordenar: "Trier par",
+    ordenRecientes: "Plus récentes",
+    ordenPrecioAsc: "Prix : croissant",
+    ordenPrecioDesc: "Prix : décroissant",
+    limpiar: "Effacer les filtres",
+    mostrando: "Affichage de {n} sur {total} propriétés",
+    sinResultados:
+      "Aucune propriété ne correspond à ces filtres. Ajustez votre recherche ou contactez-nous : nous avons peut-être exactement ce que vous cherchez.",
+  },
+  invertir: {
+    overline: "Costa Rica",
+    titulo: "Pourquoi investir au Costa Rica ?",
+    sub: "L'un des marchés immobiliers les plus attractifs et stables d'Amérique latine",
+    item1t: "Sécurité juridique",
+    item1p:
+      "Le Costa Rica dispose d'un Registre National de la Propriété solide et de décennies de stabilité démocratique. Votre investissement est enregistré et protégé par la loi.",
+    item2t: "Pleins droits pour les étrangers",
+    item2p:
+      "Les étrangers peuvent acheter des propriétés avec les mêmes droits que les Costariciens, sans besoin de résidence.",
+    item3t: "Valeur en croissance",
+    item3p:
+      "La valeur des terrains croît de façon soutenue, surtout dans les zones touristiques et en développement. Acheter aujourd'hui, c'est assurer demain.",
+    item4t: "Une qualité de vie incomparable",
+    item4p:
+      "Un climat privilégié toute l'année, une nature luxuriante, la stabilité politique et le fameux « Pura Vida ». Un lieu pour vivre ou passer ses vacances.",
+    pasosOverline: "Guide de l'acheteur",
+    pasosTitulo: "Achetez votre propriété en 4 étapes",
+    paso1t: "Dites-nous ce que vous cherchez",
+    paso1p:
+      "Écrivez-nous sur WhatsApp ou remplissez le formulaire. Nous vous présentons des options adaptées à votre budget et à vos besoins.",
+    paso2t: "Visitez la propriété",
+    paso2p:
+      "Nous organisons des visites pour que vous découvriez la propriété en personne. Nous vous accompagnons et répondons à toutes vos questions.",
+    paso3t: "Vérification juridique",
+    paso3p:
+      "En tant qu'avocats, nous réalisons l'étude complète du titre : acte, hypothèques, plans et permis. En toute transparence.",
+    paso4t: "Signature et transfert",
+    paso4p:
+      "Nous signons devant notaire et le transfert est inscrit au Registre National. La propriété est officiellement la vôtre.",
+  },
+  calc: {
+    titulo: "Calculateur de financement",
+    prima: "Apport initial",
+    plazo: "Durée",
+    anios: "ans",
+    tasa: "Taux d'intérêt annuel",
+    montoFinanciar: "Montant à financer",
+    cuota: "Mensualité estimée",
+    nota: "Calcul approximatif à titre informatif. Les conditions réelles dépendent de l'établissement financier.",
+    consultar: "Se renseigner sur le financement",
+    waMsg:
+      "Bonjour, je souhaite financer la propriété « {titulo} ». Pourriez-vous m'informer sur les options ?",
+  },
+  compartir: {
+    titulo: "Partager cette propriété",
+    copiar: "Copier le lien",
+    copiado: "Lien copié !",
+  },
+  mapa: {
+    titulo: "Localisation",
+    aproxNota: "La localisation affichée sur la carte est approximative.",
+  },
+  vender: {
+    overline: "Vendez avec nous",
+    titulo: "Vendez votre propriété",
+    sub: "Publiez votre propriété avec l'appui juridique et commercial d'Oroz Real Estate",
+    benef1t: "Publication gratuite",
+    benef1p:
+      "Nous évaluons votre propriété et la publions dans notre portfolio sans frais initiaux. Nous ne gagnons que lorsque vous vendez.",
+    benef2t: "Appui juridique complet",
+    benef2p:
+      "En tant qu'avocats, nous nous chargeons de toute la documentation : étude du titre, acte et transfert devant notaire.",
+    benef3t: "De vrais acheteurs",
+    benef3p:
+      "Nous mettons votre propriété en relation avec des acheteurs nationaux et internationaux souhaitant investir au Costa Rica.",
+    formTitulo: "Parlez-nous de votre propriété",
+    lblTipo: "Type de propriété",
+    lblUbicacion: "Localisation",
+    phUbicacion: "Province, canton et lieu précis",
+    lblPrecio: "Prix souhaité (facultatif)",
+    phPrecio: "₡ ou $ montant approximatif",
+    lblDetalles: "Détails de la propriété",
+    phDetalles: "Surface, chambres, état, titre, etc.",
+    enviar: "Envoyer les informations",
+    waIntro: "Bonjour, je m'appelle {nombre} et je souhaite vendre ma propriété.",
+    waDetalle: " Type : {tipo}. Localisation : {ubicacion}.",
+    waPrecio: " Prix souhaité : {precio}.",
+  },
+  faq: {
+    overline: "Questions fréquentes",
+    titulo: "Nous répondons à vos questions",
+    q1: "Les étrangers peuvent-ils acheter une propriété au Costa Rica ?",
+    a1: "Oui. Les étrangers peuvent acheter des propriétés titrées avec les mêmes droits que les Costariciens, sans besoin de résidence. Un passeport valide suffit. Nous vous accompagnons tout au long du processus, en espagnol ou en anglais.",
+    q2: "Combien de temps dure le processus d'achat ?",
+    a2: "Un achat typique prend 4 à 6 semaines : étude du titre, rédaction de l'acte, signature devant notaire et inscription au Registre National. Avec un financement bancaire, le délai peut être un peu plus long.",
+    q3: "Quels coûts supplémentaires dois-je prévoir ?",
+    a3: "En plus du prix, prévoyez les frais de transfert (taxe de transfert, timbres et honoraires du notaire), qui représentent environ 4 % à 5 % de la valeur de la propriété. Nous vous remettons un décompte clair avant la signature.",
+    q4: "Comment vérifiez-vous les propriétés que vous vendez ?",
+    a4: "Avant de publier une propriété, nous réalisons une étude complète du titre : nous vérifions l'acte, l'absence d'hypothèques ou d'annotations, le plan cadastral et la situation fiscale. Vous achetez en toute confiance.",
+    q5: "Proposez-vous des options de financement ?",
+    a5: "Plusieurs de nos propriétés acceptent un financement bancaire ou des arrangements de paiement directs avec le vendeur. Repérez l'étiquette « Financement » dans les annonces ou contactez-nous sur WhatsApp.",
+  },
+  newsletter: {
+    titulo: "Recevez les nouvelles propriétés avant tout le monde",
+    sub: "Laissez-nous votre e-mail et nous vous préviendrons dès la publication de nouvelles opportunités.",
+    ph: "Votre adresse e-mail",
+    btn: "Recevoir les alertes",
+    waMsg:
+      "Bonjour, je souhaite recevoir des alertes sur les nouvelles propriétés. Mon e-mail : {email}",
+  },
 };
 
 const de: Dict = {
@@ -485,6 +874,7 @@ const de: Dict = {
   nav: {
     inicio: "Start",
     propiedades: "Immobilien",
+    vender: "Verkaufen",
     nosotros: "Über Uns",
     contacto: "Kontakt",
     contactenos: "Kontakt",
@@ -628,6 +1018,135 @@ const de: Dict = {
     enviar: "Senden",
     enviadoOk: "Nachricht erfolgreich gesendet",
     derechos: "Alle Rechte vorbehalten.",
+  },
+  estados: {
+    nuevo: "Neu",
+    rebajado: "Preis reduziert",
+    vendido: "Verkauft",
+    reservado: "Reserviert",
+  },
+  buscador: {
+    tipo: "Immobilientyp",
+    provincia: "Provinz",
+    todosTipos: "Alle Typen",
+    todasProvincias: "Alle Provinzen",
+    buscar: "Suchen",
+  },
+  filtros: {
+    buscarPh: "Nach Name oder Ort suchen...",
+    precioMax: "Maximaler Preis",
+    sinLimite: "Ohne Limit",
+    habitaciones: "Zimmer",
+    cualquiera: "Beliebig",
+    ordenar: "Sortieren nach",
+    ordenRecientes: "Neueste zuerst",
+    ordenPrecioAsc: "Preis: aufsteigend",
+    ordenPrecioDesc: "Preis: absteigend",
+    limpiar: "Filter zurücksetzen",
+    mostrando: "{n} von {total} Immobilien angezeigt",
+    sinResultados:
+      "Keine Immobilien entsprechen diesen Filtern. Passen Sie Ihre Suche an oder kontaktieren Sie uns – vielleicht haben wir genau das, was Sie suchen.",
+  },
+  invertir: {
+    overline: "Costa Rica",
+    titulo: "Warum in Costa Rica investieren?",
+    sub: "Einer der attraktivsten und stabilsten Immobilienmärkte Lateinamerikas",
+    item1t: "Rechtssicherheit",
+    item1p:
+      "Costa Rica verfügt über ein solides nationales Grundbuchamt und Jahrzehnte demokratischer Stabilität. Ihre Investition ist eingetragen und gesetzlich geschützt.",
+    item2t: "Volle Rechte für Ausländer",
+    item2p:
+      "Ausländer können Immobilien mit denselben Rechten wie Costa-Ricaner erwerben – ganz ohne Aufenthaltsgenehmigung.",
+    item3t: "Steigende Immobilienwerte",
+    item3p:
+      "Der Wert von Grundstücken wächst stetig, besonders in touristischen und aufstrebenden Gebieten. Wer heute kauft, sichert sich das Morgen.",
+    item4t: "Unvergleichliche Lebensqualität",
+    item4p:
+      "Ganzjährig ideales Klima, üppige Natur, politische Stabilität und das berühmte 'Pura Vida'. Ein Ort zum Leben oder Urlauben.",
+    pasosOverline: "Käufer-Leitfaden",
+    pasosTitulo: "In 4 Schritten zur eigenen Immobilie",
+    paso1t: "Sagen Sie uns, was Sie suchen",
+    paso1p:
+      "Schreiben Sie uns über WhatsApp oder füllen Sie das Formular aus. Wir präsentieren Ihnen Optionen, die zu Budget und Bedürfnissen passen.",
+    paso2t: "Besichtigen Sie die Immobilie",
+    paso2p:
+      "Wir organisieren Besichtigungen, damit Sie die Immobilie persönlich kennenlernen. Wir begleiten Sie und beantworten alle Fragen.",
+    paso3t: "Rechtliche Prüfung",
+    paso3p:
+      "Als Rechtsanwälte führen wir die vollständige Grundbuchprüfung durch: Urkunde, Belastungen, Pläne und Genehmigungen. Alles transparent.",
+    paso4t: "Unterschrift & Übertragung",
+    paso4p:
+      "Wir unterzeichnen vor dem Notar und die Übertragung wird im nationalen Register eingetragen. Die Immobilie gehört offiziell Ihnen.",
+  },
+  calc: {
+    titulo: "Finanzierungsrechner",
+    prima: "Anzahlung",
+    plazo: "Laufzeit",
+    anios: "Jahre",
+    tasa: "Jährlicher Zinssatz",
+    montoFinanciar: "Zu finanzierender Betrag",
+    cuota: "Geschätzte monatliche Rate",
+    nota: "Ungefähre Berechnung zu Informationszwecken. Die tatsächlichen Konditionen hängen vom Finanzinstitut ab.",
+    consultar: "Finanzierung anfragen",
+    waMsg:
+      'Hallo, ich möchte die Immobilie „{titulo}" finanzieren. Könnten Sie mir mehr über die Optionen sagen?',
+  },
+  compartir: {
+    titulo: "Diese Immobilie teilen",
+    copiar: "Link kopieren",
+    copiado: "Link kopiert!",
+  },
+  mapa: {
+    titulo: "Standort",
+    aproxNota: "Der auf der Karte angezeigte Standort ist ungefähr.",
+  },
+  vender: {
+    overline: "Verkaufen Sie mit uns",
+    titulo: "Verkaufen Sie Ihre Immobilie",
+    sub: "Inserieren Sie Ihre Immobilie mit der rechtlichen und kommerziellen Unterstützung von Oroz Real Estate",
+    benef1t: "Kostenloses Inserat",
+    benef1p:
+      "Wir bewerten Ihre Immobilie und nehmen sie ohne Vorabkosten in unser Portfolio auf. Wir verdienen erst, wenn Sie verkaufen.",
+    benef2t: "Volle rechtliche Unterstützung",
+    benef2p:
+      "Als Rechtsanwälte kümmern wir uns um die gesamte Dokumentation: Grundbuchprüfung, Urkunde und Übertragung vor dem Notar.",
+    benef3t: "Echte Käufer",
+    benef3p:
+      "Wir bringen Ihre Immobilie mit nationalen und internationalen Käufern zusammen, die in Costa Rica investieren möchten.",
+    formTitulo: "Erzählen Sie uns von Ihrer Immobilie",
+    lblTipo: "Immobilientyp",
+    lblUbicacion: "Standort",
+    phUbicacion: "Provinz, Kanton und genauer Ort",
+    lblPrecio: "Gewünschter Preis (optional)",
+    phPrecio: "₡ oder $ ungefährer Betrag",
+    lblDetalles: "Details zur Immobilie",
+    phDetalles: "Fläche, Zimmer, Zustand, Grundbuch usw.",
+    enviar: "Informationen senden",
+    waIntro: "Hallo, mein Name ist {nombre} und ich möchte meine Immobilie verkaufen.",
+    waDetalle: " Typ: {tipo}. Standort: {ubicacion}.",
+    waPrecio: " Gewünschter Preis: {precio}.",
+  },
+  faq: {
+    overline: "Häufige Fragen",
+    titulo: "Wir beantworten Ihre Fragen",
+    q1: "Können Ausländer in Costa Rica Immobilien kaufen?",
+    a1: "Ja. Ausländer können eingetragene Immobilien mit denselben Rechten wie Costa-Ricaner kaufen, ohne Aufenthaltsgenehmigung. Sie benötigen nur einen gültigen Reisepass. Wir begleiten Sie durch den gesamten Prozess, auf Spanisch oder Englisch.",
+    q2: "Wie lange dauert der Kaufprozess?",
+    a2: "Ein typischer Kauf dauert 4 bis 6 Wochen: Grundbuchprüfung, Erstellung der Urkunde, Unterzeichnung vor dem Notar und Eintragung im nationalen Register. Mit Bankfinanzierung kann es etwas länger dauern.",
+    q3: "Welche zusätzlichen Kosten muss ich einplanen?",
+    a3: "Neben dem Preis sollten Sie die Übertragungskosten (Übertragungssteuer, Gebühren und Notarhonorare) einplanen, die zusammen etwa 4 % bis 5 % des Immobilienwerts betragen. Vor der Unterzeichnung erhalten Sie eine klare Aufstellung.",
+    q4: "Wie prüfen Sie die Immobilien, die Sie verkaufen?",
+    a4: "Bevor wir eine Immobilie inserieren, führen wir eine vollständige Grundbuchprüfung durch: Urkunde, Freiheit von Belastungen und Vermerken, Katasterplan und Steuerstatus. Sie kaufen mit Sicherheit.",
+    q5: "Bieten Sie Finanzierungsmöglichkeiten an?",
+    a5: "Mehrere unserer Immobilien akzeptieren Bankfinanzierung oder direkte Zahlungsvereinbarungen mit dem Verkäufer. Achten Sie auf das 'Finanzierung'-Etikett in den Inseraten oder fragen Sie uns über WhatsApp.",
+  },
+  newsletter: {
+    titulo: "Erfahren Sie als Erster von neuen Immobilien",
+    sub: "Hinterlassen Sie uns Ihre E-Mail und wir informieren Sie über neue Angebote.",
+    ph: "Ihre E-Mail-Adresse",
+    btn: "Benachrichtigungen erhalten",
+    waMsg:
+      "Hallo, ich möchte Benachrichtigungen über neue Immobilien erhalten. Meine E-Mail: {email}",
   },
 };
 

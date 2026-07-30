@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { contacto, whatsappUrl } from "@/data/contacto";
+import FaqAccordion from "@/components/FaqAccordion";
 import { FacebookIcon, InstagramIcon, WhatsAppIcon } from "@/components/SocialIcons";
 import { getDict, Locale, tpl } from "@/i18n/dictionaries";
 
@@ -291,6 +292,9 @@ export default function ContactoPage({
           </div>
         </div>
       </section>
+
+      {/* Preguntas frecuentes */}
+      <FaqAccordion dict={dict} />
     </>
   );
 }

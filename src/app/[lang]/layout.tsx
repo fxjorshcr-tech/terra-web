@@ -35,6 +35,16 @@ export function generateMetadata({
     metadataBase: new URL("https://www.orozrealstate.com"),
     title: dict.meta.titulo,
     description: dict.meta.descripcion,
+    alternates: {
+      languages: Object.fromEntries(locales.map((l) => [l, `/${l}`])),
+    },
+    openGraph: {
+      title: dict.meta.titulo,
+      description: dict.meta.descripcion,
+      siteName: "Oroz Real Estate",
+      locale: params.lang,
+      type: "website",
+    },
   };
 }
 

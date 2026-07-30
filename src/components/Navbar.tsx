@@ -22,6 +22,7 @@ export default function Navbar({ lang, dict }: { lang: Locale; dict: Dict }) {
   const links = [
     { href: `/${lang}`, label: dict.nav.inicio },
     { href: `/${lang}/propiedades`, label: dict.nav.propiedades },
+    { href: `/${lang}/vender`, label: dict.nav.vender },
     { href: `/${lang}/nosotros`, label: dict.nav.nosotros },
     { href: `/${lang}/contacto`, label: dict.nav.contacto },
   ];

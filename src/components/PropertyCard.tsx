@@ -1,6 +1,13 @@
 import Link from "next/link";
-import { Propiedad } from "@/data/propiedades";
+import { Propiedad, formatCRC, formatUSD } from "@/data/propiedades";
 import { Dict, Locale, tituloPropiedad } from "@/i18n/dictionaries";
+
+const estadoEstilos: Record<NonNullable<Propiedad["estado"]>, string> = {
+  nuevo: "bg-emerald-600",
+  rebajado: "bg-red-600",
+  vendido: "bg-gray-900",
+  reservado: "bg-amber-500",
+};
 
 export default function PropertyCard({
   propiedad,
@@ -11,6 +18,8 @@ export default function PropertyCard({
   lang: Locale;
   dict: Dict;
 }) {
+  const vendido = propiedad.estado === "vendido";
+
   return (
     <Link href={`/${lang}/propiedades/${propiedad.id}`} className="group block">
       <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow border border-gray-200">
@@ -18,13 +27,29 @@ export default function PropertyCard({
           <img
             src={propiedad.imagen}
             alt={tituloPropiedad(propiedad, lang, dict)}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 ${
+              vendido ? "grayscale" : ""
+            }`}
           />
-          <div className="absolute top-3 left-3 flex gap-2">
+          {vendido && (
+            <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+              <span className="border-2 border-white text-white text-lg font-bold uppercase tracking-[0.2em] px-6 py-2 -rotate-6">
+                {dict.estados.vendido}
+              </span>
+            </div>
+          )}
+          <div className="absolute top-3 left-3 flex flex-wrap gap-2 pr-3">
             <span className="bg-primary-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
               {dict.tipos[propiedad.tipo]}
             </span>
-            {propiedad.financiamiento && (
+            {propiedad.estado && !vendido && (
+              <span
+                className={`${estadoEstilos[propiedad.estado]} text-white text-xs font-semibold px-3 py-1 rounded-full`}
+              >
+                {dict.estados[propiedad.estado]}
+              </span>
+            )}
+            {propiedad.financiamiento && !vendido && (
               <span className="bg-accent-500 text-white text-xs font-semibold px-3 py-1 rounded-full">
                 {dict.card.financiamiento}
               </span>
@@ -81,9 +106,17 @@ export default function PropertyCard({
             )}
           </div>
 
-          <p className="mt-3 text-primary-700 font-bold text-xl">
-            {propiedad.precio}
-          </p>
+          <div className="mt-3 flex items-baseline gap-2 flex-wrap">
+            <p className="text-primary-700 font-bold text-xl">
+              {formatCRC(propiedad.precio)}
+            </p>
+            {propiedad.precioAnterior && (
+              <p className="text-gray-400 text-sm line-through">
+                {formatCRC(propiedad.precioAnterior)}
+              </p>
+            )}
+          </div>
+          <p className="text-gray-500 text-sm">≈ {formatUSD(propiedad.precio)} USD</p>
         </div>
       </div>
     </Link>
