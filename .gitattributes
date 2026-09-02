@@ -1,2 +1,9 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Assets binarios: nunca normalizar saltos de línea
+*.png binary
+*.ico binary
+*.jpg binary
+*.jpeg binary
+*.webp binary

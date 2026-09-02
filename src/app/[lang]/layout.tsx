@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Montserrat } from "next/font/google";
 import "../globals.css";
 import Navbar from "@/components/Navbar";
@@ -47,6 +47,10 @@ export function generateMetadata({
     },
   };
 }
+
+export const viewport: Viewport = {
+  themeColor: "#1f2a35",
+};
 
 export default function RootLayout({
   children,
