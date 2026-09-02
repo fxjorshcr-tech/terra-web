@@ -2,9 +2,9 @@
 export const contacto = {
   nombre: "Lic. Gabriel Orozco",
   cargo: "Asesor Inmobiliario / Abogado",
-  telefonoDisplay: "+506 6098-2244",
-  telefonoHref: "tel:+50660982244",
-  whatsappNumero: "50660982244",
+  telefonoDisplay: "+506 6000-3218",
+  telefonoHref: "tel:+50660003218",
+  whatsappNumero: "50660003218",
   email: "gabrielorozco@orozrealstate.com",
   // TODO: reemplazar con los enlaces reales de las redes sociales
   facebook: "https://www.facebook.com/orozrealstate",
