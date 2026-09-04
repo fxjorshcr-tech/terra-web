@@ -5,10 +5,10 @@ export const contacto = {
   telefonoDisplay: "+506 6000-3218",
   telefonoHref: "tel:+50660003218",
   whatsappNumero: "50660003218",
-  email: "gabrielorozco@orozrealstate.com",
+  email: "gabrielorozco@orozrealestate.com",
   // TODO: reemplazar con los enlaces reales de las redes sociales
-  facebook: "https://www.facebook.com/orozrealstate",
-  instagram: "https://www.instagram.com/orozrealstate",
+  facebook: "https://www.facebook.com/orozrealestate",
+  instagram: "https://www.instagram.com/orozrealestate",
   ubicacion: "Costa Rica",
 };
 
@@ -29,7 +29,7 @@ export const marca = {
 // mientras los perfiles no existan.
 export const resenas = {
   google: { url: "", rating: "" }, // ej: { url: "https://g.page/...", rating: "5.0" }
-  trustpilot: { url: "", rating: "" }, // ej: { url: "https://www.trustpilot.com/review/orozrealstate.com", rating: "4.8" }
+  trustpilot: { url: "", rating: "" }, // ej: { url: "https://www.trustpilot.com/review/orozrealestate.com", rating: "4.8" }
 };
 
 export function whatsappUrl(texto?: string) {
