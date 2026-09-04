@@ -11,15 +11,29 @@ import { Dict, Locale, tpl } from "@/i18n/dictionaries";
 export default function Footer({ lang, dict }: { lang: Locale; dict: Dict }) {
   const [formData, setFormData] = useState({
     nombre: "",
+    telefono: "",
     email: "",
+    interes: "",
     mensaje: "",
   });
   const [honeypot, setHoneypot] = useState("");
   const [enviando, setEnviando] = useState(false);
   const [modal, setModal] = useState<"success" | "error" | null>(null);
 
-  const textoWhatsApp = () =>
-    `${tpl(dict.contacto.waIntro, { nombre: formData.nombre })} ${formData.mensaje} (Email: ${formData.email})`;
+  const t = dict.contacto;
+  const intereses: Record<string, string> = {
+    casa: t.optCasa,
+    lote: t.optLote,
+    vender: t.optVender,
+    info: t.optInfo,
+  };
+
+  const textoWhatsApp = () => {
+    const interesTexto = intereses[formData.interes]
+      ? tpl(t.waInteres, { interes: intereses[formData.interes] })
+      : "";
+    return `${tpl(t.waIntro, { nombre: formData.nombre })}${interesTexto} ${formData.mensaje} (Tel: ${formData.telefono}, Email: ${formData.email})`;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,12 +43,18 @@ export default function Footer({ lang, dict }: { lang: Locale; dict: Dict }) {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, empresa: honeypot, origen: "footer", lang }),
+        body: JSON.stringify({
+          ...formData,
+          interes: intereses[formData.interes] ?? "",
+          empresa: honeypot,
+          origen: "footer",
+          lang,
+        }),
       });
       const data = await res.json().catch(() => ({}));
       if (res.ok && data.ok) {
         setModal("success");
-        setFormData({ nombre: "", email: "", mensaje: "" });
+        setFormData({ nombre: "", telefono: "", email: "", interes: "", mensaje: "" });
       } else {
         setModal("error");
       }
@@ -44,6 +64,10 @@ export default function Footer({ lang, dict }: { lang: Locale; dict: Dict }) {
       setEnviando(false);
     }
   };
+
+  const inputClase =
+    "w-full px-3 py-2 rounded-lg bg-secondary-600 border border-secondary-500 text-white placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-accent-500";
+  const labelClase = "block text-xs font-medium text-gray-400 mb-1";
 
   const links = [
     { href: `/${lang}`, label: dict.nav.inicio },
@@ -161,36 +185,88 @@ export default function Footer({ lang, dict }: { lang: Locale; dict: Dict }) {
               {dict.footer.escribanos}
             </h3>
             <form onSubmit={handleSubmit} className="space-y-3 relative">
-              <input
-                type="text"
-                placeholder={dict.footer.phNombre}
-                required
-                value={formData.nombre}
-                onChange={(e) =>
-                  setFormData({ ...formData, nombre: e.target.value })
-                }
-                className="w-full px-3 py-2 rounded-lg bg-secondary-600 border border-secondary-500 text-white placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-accent-500"
-              />
-              <input
-                type="email"
-                placeholder={dict.footer.phEmail}
-                required
-                value={formData.email}
-                onChange={(e) =>
-                  setFormData({ ...formData, email: e.target.value })
-                }
-                className="w-full px-3 py-2 rounded-lg bg-secondary-600 border border-secondary-500 text-white placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-accent-500"
-              />
-              <textarea
-                placeholder={dict.footer.phMensaje}
-                required
-                rows={3}
-                value={formData.mensaje}
-                onChange={(e) =>
-                  setFormData({ ...formData, mensaje: e.target.value })
-                }
-                className="w-full px-3 py-2 rounded-lg bg-secondary-600 border border-secondary-500 text-white placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-accent-500 resize-none"
-              />
+              <div>
+                <label htmlFor="f-nombre" className={labelClase}>
+                  {t.lblNombre}
+                </label>
+                <input
+                  type="text"
+                  id="f-nombre"
+                  required
+                  value={formData.nombre}
+                  onChange={(e) =>
+                    setFormData({ ...formData, nombre: e.target.value })
+                  }
+                  className={inputClase}
+                  placeholder={t.phNombre}
+                />
+              </div>
+              <div>
+                <label htmlFor="f-telefono" className={labelClase}>
+                  {t.lblTelefono}
+                </label>
+                <input
+                  type="tel"
+                  id="f-telefono"
+                  value={formData.telefono}
+                  onChange={(e) =>
+                    setFormData({ ...formData, telefono: e.target.value })
+                  }
+                  className={inputClase}
+                  placeholder="+506 0000-0000"
+                />
+              </div>
+              <div>
+                <label htmlFor="f-email" className={labelClase}>
+                  {t.lblCorreo}
+                </label>
+                <input
+                  type="email"
+                  id="f-email"
+                  required
+                  value={formData.email}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
+                  className={inputClase}
+                  placeholder={t.phCorreo}
+                />
+              </div>
+              <div>
+                <label htmlFor="f-interes" className={labelClase}>
+                  {t.lblInteres}
+                </label>
+                <select
+                  id="f-interes"
+                  value={formData.interes}
+                  onChange={(e) =>
+                    setFormData({ ...formData, interes: e.target.value })
+                  }
+                  className={inputClase}
+                >
+                  <option value="">{t.optSeleccione}</option>
+                  <option value="casa">{t.optCasa}</option>
+                  <option value="lote">{t.optLote}</option>
+                  <option value="vender">{t.optVender}</option>
+                  <option value="info">{t.optInfo}</option>
+                </select>
+              </div>
+              <div>
+                <label htmlFor="f-mensaje" className={labelClase}>
+                  {t.lblMensaje}
+                </label>
+                <textarea
+                  id="f-mensaje"
+                  required
+                  rows={3}
+                  value={formData.mensaje}
+                  onChange={(e) =>
+                    setFormData({ ...formData, mensaje: e.target.value })
+                  }
+                  className={`${inputClase} resize-none`}
+                  placeholder={t.phMensaje}
+                />
+              </div>
               <div className="absolute -left-[9999px] top-auto w-px h-px overflow-hidden" aria-hidden="true">
                 <label htmlFor="f-empresa">Empresa</label>
                 <input
@@ -206,10 +282,17 @@ export default function Footer({ lang, dict }: { lang: Locale; dict: Dict }) {
               <button
                 type="submit"
                 disabled={enviando}
-                className="w-full bg-accent-500 hover:bg-accent-600 disabled:opacity-60 disabled:cursor-not-allowed text-white py-2 rounded-lg font-semibold text-sm transition-colors"
+                className="w-full bg-accent-500 hover:bg-accent-600 disabled:opacity-60 disabled:cursor-not-allowed text-white py-2.5 rounded-lg font-semibold text-sm transition-colors flex items-center justify-center gap-2"
               >
-                {enviando ? dict.contacto.enviando : dict.footer.enviar}
+                {enviando && (
+                  <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
+                  </svg>
+                )}
+                {enviando ? t.enviando : t.enviar}
               </button>
+              <p className="text-gray-500 text-xs text-center">{t.nota}</p>
             </form>
           </div>
         </div>
