@@ -5,6 +5,7 @@ import Link from "next/link";
 import { contacto, marca, whatsappUrl } from "@/data/contacto";
 import { FacebookIcon, InstagramIcon, WhatsAppIcon } from "@/components/SocialIcons";
 import Logo from "@/components/Logo";
+import ContactModal from "@/components/ContactModal";
 import { Dict, Locale, tpl } from "@/i18n/dictionaries";
 
 export default function Footer({ lang, dict }: { lang: Locale; dict: Dict }) {
@@ -13,15 +14,35 @@ export default function Footer({ lang, dict }: { lang: Locale; dict: Dict }) {
     email: "",
     mensaje: "",
   });
-  const [enviado, setEnviado] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
+  const [enviando, setEnviando] = useState(false);
+  const [modal, setModal] = useState<"success" | "error" | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const textoWhatsApp = () =>
+    `${tpl(dict.contacto.waIntro, { nombre: formData.nombre })} ${formData.mensaje} (Email: ${formData.email})`;
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const texto = `${tpl(dict.contacto.waIntro, { nombre: formData.nombre })} ${formData.mensaje} (Email: ${formData.email})`;
-    window.open(whatsappUrl(texto), "_blank");
-    setEnviado(true);
-    setFormData({ nombre: "", email: "", mensaje: "" });
-    setTimeout(() => setEnviado(false), 3000);
+    if (enviando) return;
+    setEnviando(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, empresa: honeypot, origen: "footer", lang }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.ok) {
+        setModal("success");
+        setFormData({ nombre: "", email: "", mensaje: "" });
+      } else {
+        setModal("error");
+      }
+    } catch {
+      setModal("error");
+    } finally {
+      setEnviando(false);
+    }
   };
 
   const links = [
@@ -139,7 +160,7 @@ export default function Footer({ lang, dict }: { lang: Locale; dict: Dict }) {
             <h3 className="font-semibold text-lg mb-4 font-sans">
               {dict.footer.escribanos}
             </h3>
-            <form onSubmit={handleSubmit} className="space-y-3">
+            <form onSubmit={handleSubmit} className="space-y-3 relative">
               <input
                 type="text"
                 placeholder={dict.footer.phNombre}
@@ -170,17 +191,25 @@ export default function Footer({ lang, dict }: { lang: Locale; dict: Dict }) {
                 }
                 className="w-full px-3 py-2 rounded-lg bg-secondary-600 border border-secondary-500 text-white placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-accent-500 resize-none"
               />
+              <div className="absolute -left-[9999px] top-auto w-px h-px overflow-hidden" aria-hidden="true">
+                <label htmlFor="f-empresa">Empresa</label>
+                <input
+                  type="text"
+                  id="f-empresa"
+                  name="empresa"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                />
+              </div>
               <button
                 type="submit"
-                className="w-full bg-accent-500 hover:bg-accent-600 text-white py-2 rounded-lg font-semibold text-sm transition-colors"
+                disabled={enviando}
+                className="w-full bg-accent-500 hover:bg-accent-600 disabled:opacity-60 disabled:cursor-not-allowed text-white py-2 rounded-lg font-semibold text-sm transition-colors"
               >
-                {dict.footer.enviar}
+                {enviando ? dict.contacto.enviando : dict.footer.enviar}
               </button>
-              {enviado && (
-                <p className="text-green-400 text-xs text-center">
-                  {dict.footer.enviadoOk}
-                </p>
-              )}
             </form>
           </div>
         </div>
@@ -195,6 +224,23 @@ export default function Footer({ lang, dict }: { lang: Locale; dict: Dict }) {
           </p>
         </div>
       </div>
+
+      <ContactModal
+        open={modal === "success"}
+        onClose={() => setModal(null)}
+        titulo={dict.contacto.modalTitulo}
+        texto={dict.contacto.modalTexto}
+        cerrar={dict.contacto.modalCerrar}
+      />
+      <ContactModal
+        open={modal === "error"}
+        onClose={() => setModal(null)}
+        variant="error"
+        titulo={dict.contacto.errorTitulo}
+        texto={dict.contacto.errorTexto}
+        cerrar={dict.contacto.modalCerrar}
+        accion={{ label: dict.contacto.errorWhatsApp, href: whatsappUrl(textoWhatsApp()) }}
+      />
     </footer>
   );
 }

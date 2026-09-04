@@ -127,7 +127,7 @@ export default function PropiedadDetalle({
     name: titulo,
     description: propiedad.descripcion,
     image: propiedad.imagen,
-    url: `https://www.orozrealstate.com/${lang}/propiedades/${propiedad.id}`,
+    url: `https://www.orozrealestate.com/${lang}/propiedades/${propiedad.id}`,
     offers: {
       "@type": "Offer",
       price: propiedad.precio,

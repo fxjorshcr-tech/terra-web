@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { contacto, whatsappUrl } from "@/data/contacto";
+import ContactModal from "@/components/ContactModal";
 import FaqAccordion from "@/components/FaqAccordion";
 import { FacebookIcon, InstagramIcon, WhatsAppIcon } from "@/components/SocialIcons";
 import { getDict, Locale, tpl } from "@/i18n/dictionaries";
@@ -30,13 +31,46 @@ export default function ContactoPage({
     info: t.optInfo,
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const [honeypot, setHoneypot] = useState("");
+  const [enviando, setEnviando] = useState(false);
+  const [modal, setModal] = useState<"success" | "error" | null>(null);
+
+  // Texto listo para WhatsApp; se usa como respaldo si falla el envío.
+  const textoWhatsApp = () => {
     const interesTexto = intereses[formData.interes]
       ? tpl(t.waInteres, { interes: intereses[formData.interes] })
       : "";
-    const texto = `${tpl(t.waIntro, { nombre: formData.nombre })}${interesTexto} ${formData.mensaje} (Tel: ${formData.telefono}, Email: ${formData.email})`;
-    window.open(whatsappUrl(texto), "_blank");
+    return `${tpl(t.waIntro, { nombre: formData.nombre })}${interesTexto} ${formData.mensaje} (Tel: ${formData.telefono}, Email: ${formData.email})`;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (enviando) return;
+    setEnviando(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...formData,
+          interes: intereses[formData.interes] ?? "",
+          empresa: honeypot,
+          origen: "contacto",
+          lang,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.ok) {
+        setModal("success");
+        setFormData({ nombre: "", telefono: "", email: "", interes: "", mensaje: "" });
+      } else {
+        setModal("error");
+      }
+    } catch {
+      setModal("error");
+    } finally {
+      setEnviando(false);
+    }
   };
 
   return (
@@ -56,7 +90,7 @@ export default function ContactoPage({
           {/* Form */}
           <div>
             <h2 className="text-2xl text-secondary-700 mb-6">{t.formTitulo}</h2>
-            <form className="space-y-5" onSubmit={handleSubmit}>
+            <form className="space-y-5 relative" onSubmit={handleSubmit}>
               <div>
                 <label
                   htmlFor="nombre"
@@ -158,11 +192,31 @@ export default function ContactoPage({
                   placeholder={t.phMensaje}
                 />
               </div>
+              {/* Honeypot anti-spam: oculto para personas, los bots lo rellenan */}
+              <div className="absolute -left-[9999px] top-auto w-px h-px overflow-hidden" aria-hidden="true">
+                <label htmlFor="empresa">Empresa</label>
+                <input
+                  type="text"
+                  id="empresa"
+                  name="empresa"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                />
+              </div>
               <button
                 type="submit"
-                className="w-full bg-primary-700 hover:bg-primary-800 text-white py-3 rounded-lg font-semibold text-lg transition-colors"
+                disabled={enviando}
+                className="w-full bg-primary-700 hover:bg-primary-800 disabled:opacity-60 disabled:cursor-not-allowed text-white py-3 rounded-lg font-semibold text-lg transition-colors flex items-center justify-center gap-2"
               >
-                {t.enviar}
+                {enviando && (
+                  <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
+                  </svg>
+                )}
+                {enviando ? t.enviando : t.enviar}
               </button>
               <p className="text-gray-400 text-xs text-center">{t.nota}</p>
             </form>
@@ -295,6 +349,23 @@ export default function ContactoPage({
 
       {/* Preguntas frecuentes */}
       <FaqAccordion dict={dict} />
+
+      <ContactModal
+        open={modal === "success"}
+        onClose={() => setModal(null)}
+        titulo={t.modalTitulo}
+        texto={t.modalTexto}
+        cerrar={t.modalCerrar}
+      />
+      <ContactModal
+        open={modal === "error"}
+        onClose={() => setModal(null)}
+        variant="error"
+        titulo={t.errorTitulo}
+        texto={t.errorTexto}
+        cerrar={t.modalCerrar}
+        accion={{ label: t.errorWhatsApp, href: whatsappUrl(textoWhatsApp()) }}
+      />
     </>
   );
 }

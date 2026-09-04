@@ -32,7 +32,7 @@ export function generateMetadata({
 }): Metadata {
   const dict = getDict(params.lang);
   return {
-    metadataBase: new URL("https://www.orozrealstate.com"),
+    metadataBase: new URL("https://www.orozrealestate.com"),
     title: dict.meta.titulo,
     description: dict.meta.descripcion,
     alternates: {
