@@ -10,7 +10,7 @@ const DESTINATARIOS_DEFAULT = [
 // Remitente. Mientras el dominio no esté verificado en Resend se usa el
 // remitente de pruebas `onboarding@resend.dev`, que SOLO entrega al correo
 // dueño de la cuenta de Resend. Al verificar el dominio, definir por ejemplo:
-//   RESEND_FROM="Oroz Real Estate <contacto@orozrealstate.com>"
+//   RESEND_FROM="Oroz Real Estate <contacto@orozrealestate.com>"
 const FROM_DEFAULT = "Oroz Real Estate <onboarding@resend.dev>";
 
 export type ContactPayload = {

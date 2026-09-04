@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { propiedades } from "@/data/propiedades";
 import { locales } from "@/i18n/dictionaries";
 
-const BASE = "https://www.orozrealstate.com";
+const BASE = "https://www.orozrealestate.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const estaticas = ["", "/propiedades", "/vender", "/nosotros", "/contacto"];
