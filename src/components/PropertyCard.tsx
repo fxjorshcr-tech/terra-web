@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Propiedad, formatCRC, formatUSD } from "@/data/propiedades";
 import { Dict, Locale, tituloPropiedad } from "@/i18n/dictionaries";
+import { imagenFluida } from "@/lib/imagen";
 
 const estadoEstilos: Record<NonNullable<Propiedad["estado"]>, string> = {
   nuevo: "bg-emerald-600",
@@ -25,7 +26,10 @@ export default function PropertyCard({
       <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow border border-gray-200">
         <div className="relative h-52 overflow-hidden">
           <img
-            src={propiedad.imagen}
+            {...imagenFluida(propiedad.imagen, {
+              sizes: "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw",
+              anchos: [384, 640, 828],
+            })}
             alt={tituloPropiedad(propiedad, lang, dict)}
             className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 ${
               vendido ? "grayscale" : ""

@@ -14,6 +14,7 @@ import PropertyMap from "@/components/PropertyMap";
 import { contacto, whatsappUrl } from "@/data/contacto";
 import { WhatsAppIcon } from "@/components/SocialIcons";
 import { getDict, Locale, tituloPropiedad, tpl } from "@/i18n/dictionaries";
+import { imagenFija, imagenFluida } from "@/lib/imagen";
 
 export function generateStaticParams() {
   return propiedades.map((p) => ({ id: String(p.id) }));
@@ -172,7 +173,11 @@ export default function PropiedadDetalle({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
             <div className="h-64 sm:h-72 md:h-96 rounded-xl overflow-hidden">
               <img
-                src={propiedad.imagen}
+                {...imagenFluida(propiedad.imagen, {
+                  sizes: "(min-width: 768px) 50vw, 100vw",
+                  anchos: [640, 1080],
+                  prioridad: true,
+                })}
                 alt={titulo}
                 className="w-full h-full object-cover"
               />
@@ -181,7 +186,7 @@ export default function PropiedadDetalle({
               {[1, 2, 3, 4].map((i) => (
                 <div key={i} className="h-32 md:h-44 rounded-xl overflow-hidden">
                   <img
-                    src={propiedad.imagen}
+                    {...imagenFija(propiedad.imagen, { ancho: 256 })}
                     alt={`${titulo} - ${i}`}
                     className="w-full h-full object-cover"
                   />
@@ -370,7 +375,10 @@ export default function PropiedadDetalle({
                 <div className="text-center">
                   <div className="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4">
                     <img
-                      src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos/Gabriel%20Broker.jpeg"
+                      {...imagenFija(
+                        "https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos/Gabriel%20Broker.jpeg",
+                        { ancho: 96 }
+                      )}
                       alt="Gabriel Orozco"
                       className="w-full h-full object-cover"
                     />
