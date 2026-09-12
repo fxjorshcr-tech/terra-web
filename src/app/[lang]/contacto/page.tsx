@@ -6,6 +6,7 @@ import ContactModal from "@/components/ContactModal";
 import FaqAccordion from "@/components/FaqAccordion";
 import { FacebookIcon, InstagramIcon, WhatsAppIcon } from "@/components/SocialIcons";
 import { getDict, Locale, tpl } from "@/i18n/dictionaries";
+import { imagenFija } from "@/lib/imagen";
 
 export default function ContactoPage({
   params,
@@ -231,7 +232,10 @@ export default function ContactoPage({
               <div className="flex items-center gap-4">
                 <div className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
                   <img
-                    src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos/Gabriel%20Broker.jpeg"
+                    {...imagenFija(
+                      "https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos/Gabriel%20Broker.jpeg",
+                      { ancho: 64 }
+                    )}
                     alt="Gabriel Orozco"
                     className="w-full h-full object-cover"
                   />

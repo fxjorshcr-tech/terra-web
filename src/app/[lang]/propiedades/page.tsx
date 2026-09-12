@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import PropertyExplorer from "@/components/PropertyExplorer";
 import { marca } from "@/data/contacto";
 import { getDict, Locale } from "@/i18n/dictionaries";
+import { imagenFluida } from "@/lib/imagen";
 
 export default function PropiedadesPage({
   params,
@@ -16,7 +17,13 @@ export default function PropiedadesPage({
       {/* Header */}
       <section className="relative pt-44 pb-24 md:pt-56 md:pb-32 px-4 text-center overflow-hidden">
         <img
-          src={marca.heroImagen}
+          {...imagenFluida(marca.heroImagen, {
+            sizes: "100vw",
+            anchos: [640, 1080, 1920],
+            // Va detrás de un degradado oscuro, así que aguanta más compresión.
+            calidad: 50,
+            prioridad: true,
+          })}
           alt="Costa Rica"
           className="absolute inset-0 w-full h-full object-cover"
         />

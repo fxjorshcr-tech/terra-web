@@ -3,6 +3,7 @@ import { marca } from "@/data/contacto";
 import Logo from "@/components/Logo";
 import ReviewBadges from "@/components/ReviewBadges";
 import { getDict, Locale } from "@/i18n/dictionaries";
+import { imagenFija, imagenFluida } from "@/lib/imagen";
 
 export default function NosotrosPage({
   params,
@@ -46,7 +47,10 @@ export default function NosotrosPage({
           </div>
           <div className="h-80 rounded-2xl overflow-hidden shadow-lg">
             <img
-              src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos/venta-de-propiedades.jpg"
+              {...imagenFluida(
+                "https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos/venta-de-propiedades.jpg",
+                { sizes: "(min-width: 768px) 50vw, 100vw", anchos: [640, 1080] }
+              )}
               alt="Costa Rica"
               className="w-full h-full object-cover"
             />
@@ -61,7 +65,10 @@ export default function NosotrosPage({
             <div className="flex justify-center">
               <div className="w-72 h-80 rounded-2xl overflow-hidden shadow-lg">
                 <img
-                  src="https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos/Gabriel%20Broker.jpeg"
+                  {...imagenFija(
+                    "https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/public/Fotos/Gabriel%20Broker.jpeg",
+                    { ancho: 288 }
+                  )}
                   alt="Gabriel Orozco"
                   className="w-full h-full object-cover"
                 />
@@ -117,7 +124,7 @@ export default function NosotrosPage({
                 className="mt-8 flex items-center gap-5 group"
               >
                 <img
-                  src={marca.grupoLogo}
+                  {...imagenFija(marca.grupoLogo, { ancho: 128, calidad: 80 })}
                   alt="Grupo Oroz"
                   className="h-28 w-28 md:h-32 md:w-32 rounded-xl object-contain bg-white shadow-md border border-gray-200"
                 />
