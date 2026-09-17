@@ -45,7 +45,7 @@ export default function Navbar({ lang, dict }: { lang: Locale; dict: Dict }) {
           <Link href={`/${lang}`} className="flex-shrink-0" aria-label="Oroz Real Estate">
             <Logo
               className={`transition-all duration-300 ${
-                scrolled ? "h-16" : "h-28 md:h-40"
+                scrolled ? "h-11" : "h-16 md:h-24"
               }`}
             />
           </Link>
