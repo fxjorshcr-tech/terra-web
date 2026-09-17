@@ -14,7 +14,9 @@ export const contacto = {
 
 export const marca = {
   nombre: "Oroz Real Estate",
-  logo: "https://mmlbslwljvmscbgsqkkq.supabase.co/storage/v1/object/sign/logos-oroz/ChatGPT%20Image%2027%20jul%202026,%2011_27_19%20(1).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9iZmNkZjM3My00NzkzLTRhYjQtYmRhOC04OWY1ZmNiMjdhMzciLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJsb2dvcy1vcm96L0NoYXRHUFQgSW1hZ2UgMjcganVsIDIwMjYsIDExXzI3XzE5ICgxKS5wbmciLCJzY29wZSI6ImRvd25sb2FkIiwiaWF0IjoxNzg1MTczMjg2LCJleHAiOjI0MTU4OTMyODZ9.Bi7TBOxj2n51VEOfSLjRHqaGV4yAu2pNnGENS_Tj6AM",
+  // Logo oficial (dorado, fondo transparente), extraído del vector del
+  // diseñador. Vive en /public para no gastar egress de Supabase.
+  logo: "/logo-oroz.png",
   grupo: "Grupo Oroz",
   grupoUrl: "https://www.grupooroz.com",
   grupoLogo:

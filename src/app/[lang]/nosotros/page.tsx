@@ -32,7 +32,9 @@ export default function NosotrosPage({
       <section className="py-16 px-4">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
-            <div className="mb-6">
+            {/* El logo dorado se diseñó para fondos oscuros; sobre blanco se
+                lava, así que va sobre un bloque azul de la marca. */}
+            <div className="mb-6 inline-block rounded-2xl bg-secondary-800 px-8 py-5">
               <Logo size="md" />
             </div>
             <h2 className="text-2xl font-bold text-secondary-700">
