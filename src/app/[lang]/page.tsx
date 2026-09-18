@@ -57,6 +57,44 @@ export default function Home({ params }: { params: { lang: string } }) {
     },
   ];
 
+  const zonasAzules = [
+    { nombre: dict.zonasAzules.zonaNicoya, aqui: true },
+    { nombre: dict.zonasAzules.zonaOkinawa, aqui: false },
+    { nombre: dict.zonasAzules.zonaCerdena, aqui: false },
+    { nombre: dict.zonasAzules.zonaIcaria, aqui: false },
+    { nombre: dict.zonasAzules.zonaLomaLinda, aqui: false },
+  ];
+
+  const oportunidades = [
+    {
+      titulo: dict.zonasAzules.op1t,
+      texto: dict.zonasAzules.op1p,
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+      ),
+    },
+    {
+      titulo: dict.zonasAzules.op2t,
+      texto: dict.zonasAzules.op2p,
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+        </svg>
+      ),
+    },
+    {
+      titulo: dict.zonasAzules.op3t,
+      texto: dict.zonasAzules.op3p,
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-7-18-7 18 5-2zm0 0v-8" />
+        </svg>
+      ),
+    },
+  ];
+
   const pasos = [
     { titulo: dict.invertir.paso1t, texto: dict.invertir.paso1p },
     { titulo: dict.invertir.paso2t, texto: dict.invertir.paso2p },
@@ -171,6 +209,113 @@ export default function Home({ params }: { params: { lang: string } }) {
                 </div>
               </Reveal>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Zonas Azules: Nicoya como argumento de inversión */}
+      <section className="bg-gray-50 py-20 px-4 overflow-hidden">
+        <div className="max-w-6xl mx-auto">
+          <Reveal>
+            <div className="text-center mb-14">
+              <p className="text-accent-600 font-semibold text-xs uppercase tracking-[0.25em]">
+                {dict.zonasAzules.overline}
+              </p>
+              <h2 className="text-3xl md:text-4xl text-secondary-700 mt-3 max-w-3xl mx-auto">
+                {dict.zonasAzules.titulo}
+              </h2>
+              <div className="w-14 h-0.5 bg-accent-500 mx-auto mt-5" />
+              <p className="text-gray-500 mt-5 max-w-2xl mx-auto">
+                {dict.zonasAzules.sub}
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <Reveal>
+              <figure>
+                <div className="rounded-2xl overflow-hidden shadow-lg border border-gray-200">
+                  <img
+                    {...imagenFluida("/zonas-azules.webp", {
+                      sizes: "(min-width: 1024px) 560px, 100vw",
+                      anchos: [640, 1080],
+                      calidad: 72,
+                    })}
+                    alt={dict.zonasAzules.imgAlt}
+                    className="w-full h-auto"
+                  />
+                </div>
+                <figcaption className="text-xs text-gray-400 mt-3 text-center">
+                  {dict.zonasAzules.fuente}
+                </figcaption>
+              </figure>
+
+              <p className="text-secondary-700 font-semibold mt-8 mb-3">
+                {dict.zonasAzules.zonasTitulo}
+              </p>
+              <ul className="flex flex-wrap gap-2">
+                {zonasAzules.map((z) => (
+                  <li
+                    key={z.nombre}
+                    className={`text-sm px-3 py-1.5 rounded-full border ${
+                      z.aqui
+                        ? "bg-primary-700 border-primary-700 text-white font-semibold"
+                        : "bg-white border-gray-200 text-gray-600"
+                    }`}
+                  >
+                    {z.nombre}
+                    {z.aqui && (
+                      <span className="ml-2 text-accent-500 uppercase text-[10px] tracking-widest">
+                        {dict.zonasAzules.aqui}
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+
+            <Reveal delay={150}>
+              <p className="text-gray-600 leading-relaxed">{dict.zonasAzules.p1}</p>
+              <p className="text-gray-600 leading-relaxed mt-4">{dict.zonasAzules.p2}</p>
+
+              <p className="text-accent-600 font-semibold text-xs uppercase tracking-[0.25em] mt-10">
+                {dict.zonasAzules.opOverline}
+              </p>
+              <h3 className="text-2xl text-secondary-700 mt-2 font-display">
+                {dict.zonasAzules.opTitulo}
+              </h3>
+              <ul className="mt-6 space-y-5">
+                {oportunidades.map((o) => (
+                  <li key={o.titulo} className="flex gap-4">
+                    <div className="w-11 h-11 shrink-0 rounded-lg bg-primary-700/10 text-primary-700 flex items-center justify-center">
+                      {o.icon}
+                    </div>
+                    <div>
+                      <p className="font-semibold text-secondary-700">{o.titulo}</p>
+                      <p className="text-gray-600 text-sm mt-1 leading-relaxed">{o.texto}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-9 flex flex-col sm:flex-row gap-4">
+                <Link
+                  href={`/${lang}/propiedades?provincia=Guanacaste`}
+                  className="bg-primary-700 hover:bg-primary-800 text-white px-7 py-3.5 rounded-lg font-semibold transition-colors text-center"
+                >
+                  {dict.zonasAzules.btnPropiedades}
+                </Link>
+                <a
+                  href={whatsappUrl(dict.zonasAzules.whatsappMsg)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="border border-primary-700 text-primary-700 hover:bg-primary-700 hover:text-white px-7 py-3.5 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2"
+                >
+                  <WhatsAppIcon className="w-5 h-5" />
+                  {dict.zonasAzules.btnWhatsApp}
+                </a>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
